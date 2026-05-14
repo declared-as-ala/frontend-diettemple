@@ -1,4 +1,5 @@
 import { Video, ScanLine, SlidersHorizontal, TrendingUp, ArrowUpRight } from 'lucide-react';
+import Image from 'next/image';
 import SectionHeader from './SectionHeader';
 import CinematicSlot from './CinematicSlot';
 
@@ -23,7 +24,15 @@ export default function Coaching() {
               <a className="dt-btn dt-btn-ghost" href="tel:+21671000000">+216 71 000 000</a>
             </div>
           </div>
-          <CinematicSlot label="Coach · 4:5" ratio="4/5" tone="portrait" />
+          <CinematicSlot label="Coach · 4:5" ratio="4/5" tone="portrait">
+            <Image
+              src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=900&q=90&fit=crop"
+              alt="Coach DietTemple"
+              fill
+              sizes="(max-width:768px) 100vw, 45vw"
+              style={{ objectFit: 'cover', objectPosition: 'top center' }}
+            />
+          </CinematicSlot>
         </div>
       </div>
     </section>
