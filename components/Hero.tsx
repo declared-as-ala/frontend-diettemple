@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { ArrowUpRight } from 'lucide-react';
+import Image from 'next/image';
 import CountUp from './CountUp';
 
 interface HeroProps { onJoin: () => void; }
@@ -39,6 +40,14 @@ export default function Hero({ onJoin }: HeroProps) {
   return (
     <header className="dt-hero-section" id="top">
       <div className="dt-cine dt-cine-hero" style={{ position: 'absolute', inset: 0, aspectRatio: 'auto', borderRadius: 0 }}>
+        <Image
+          src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1800&q=85&fit=crop"
+          alt="Ultimate Human"
+          fill
+          sizes="100vw"
+          style={{ objectFit: 'cover', objectPosition: 'right center' }}
+          priority
+        />
         <div className="dt-cine-grade" />
         <div className="dt-cine-figure" aria-hidden />
         <div className="dt-cine-grain" />

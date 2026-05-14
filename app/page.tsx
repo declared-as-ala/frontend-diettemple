@@ -8,7 +8,6 @@ import Hero from '@/components/Hero';
 import Movement from '@/components/Movement';
 import System from '@/components/System';
 import Ranks from '@/components/Ranks';
-import Subscription from '@/components/Subscription';
 import AppShowcase from '@/components/AppShowcase';
 import Coaching from '@/components/Coaching';
 import Products from '@/components/Products';
@@ -32,7 +31,6 @@ export default function Home() {
         <Movement />
         <System />
         <Ranks />
-        <Subscription onJoin={open} />
         <AppShowcase />
         <Coaching />
         <Products />

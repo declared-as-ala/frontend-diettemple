@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import SectionHeader from './SectionHeader';
 import CinematicSlot from './CinematicSlot';
 
@@ -26,7 +27,16 @@ export default function Movement() {
               mesuré, ritualisé, conçu pour l&apos;ascension.&rdquo;
             </p>
             <div className="dt-movement-figure">
-              <CinematicSlot label="Modèle · 4:5 · contre‑jour" ratio="4/5" tone="portrait" />
+              <CinematicSlot label="Modèle · 4:5 · contre‑jour" ratio="4/5" tone="portrait">
+                <Image
+                  src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=900&q=90&fit=crop"
+                  alt="Transformation physique"
+                  fill
+                  sizes="(max-width:768px) 100vw, 45vw"
+                  style={{ objectFit: 'cover', objectPosition: 'top center' }}
+                  priority
+                />
+              </CinematicSlot>
             </div>
           </div>
           <div className="dt-movement-pillars">

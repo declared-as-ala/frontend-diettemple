@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { X, Zap, VolumeX, Play, Heart, MessageCircle, Bookmark, ChevronRight, ChevronsLeftRight, GaugeCircle, ScanLine, ArrowLeftRight, Utensils, LineChart } from 'lucide-react';
+import Image from 'next/image';
 import SectionHeader from './SectionHeader';
 import CountUp from './CountUp';
 
@@ -82,7 +83,10 @@ function ScreenReels() {
       <div className="dt-app-statusbar"><span>9:41</span><span className="dt-app-statusbar-r"><span>●●●●</span></span></div>
       <div className="dt-reels">
         <div className="dt-reels-card">
-          <div className="dt-reels-bg" style={{ background: 'radial-gradient(60% 40% at 50% 30%, rgba(200,255,61,.25), transparent 60%), linear-gradient(180deg, #1a1f2a 0%, #05060a 100%)' }} />
+          <div className="dt-reels-bg" style={{ position: 'absolute', inset: 0, overflow: 'hidden' }}>
+            <Image src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=600&q=85&fit=crop" alt="Workout reel" fill style={{ objectFit: 'cover', objectPosition: 'top center' }} />
+            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(5,6,10,.3) 0%, transparent 40%, rgba(5,6,10,.7) 100%)' }} />
+          </div>
           <div className="dt-reels-fig" />
           <div className="dt-reels-top">
             <span className="dt-reels-counter">02 / 14</span>
@@ -118,8 +122,16 @@ function ScreenCompare() {
         onMouseMove={(e) => { const r = e.currentTarget.getBoundingClientRect(); setPos(Math.max(8, Math.min(92, ((e.clientX - r.left) / r.width) * 100))); }}
         onTouchMove={(e) => { const r = e.currentTarget.getBoundingClientRect(); setPos(Math.max(8, Math.min(92, ((e.touches[0].clientX - r.left) / r.width) * 100))); }}
       >
-        <div className="dt-compare-before"><div className="dt-compare-tag">Jour 0</div></div>
-        <div className="dt-compare-after" style={{ clipPath: `inset(0 0 0 ${pos}%)` }}><div className="dt-compare-tag right">Jour 124</div></div>
+        <div className="dt-compare-before" style={{ position: 'relative', overflow: 'hidden' }}>
+          <Image src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&q=80&fit=crop&sat=-60&bri=-20" alt="Avant" fill style={{ objectFit: 'cover', objectPosition: 'top center', filter: 'grayscale(60%) brightness(0.7)' }} />
+          <div style={{ position: 'absolute', inset: 0, background: 'rgba(10,12,18,.45)' }} />
+          <div className="dt-compare-tag">Jour 0</div>
+        </div>
+        <div className="dt-compare-after" style={{ clipPath: `inset(0 0 0 ${pos}%)`, position: 'relative', overflow: 'hidden' }}>
+          <Image src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=400&q=85&fit=crop" alt="Après" fill style={{ objectFit: 'cover', objectPosition: 'top center' }} />
+          <div style={{ position: 'absolute', inset: 0, background: 'rgba(5,10,5,.2)' }} />
+          <div className="dt-compare-tag right">Jour 124</div>
+        </div>
         <div className="dt-compare-handle" style={{ left: `${pos}%` }}>
           <span className="dt-compare-knob"><ChevronsLeftRight size={14} /></span>
         </div>
@@ -135,9 +147,9 @@ function ScreenCompare() {
 
 function ScreenRecipes() {
   const recs = [
-    { c: '#C8FF3D', t: 'Bowl de poulet', m: '612 kcal · 58 P', tag: 'F1' },
-    { c: '#D8C9A3', t: 'Saumon teriyaki', m: '548 kcal · 42 P', tag: 'C2' },
-    { c: '#B8B5AB', t: 'Omelette épinards', m: '380 kcal · 30 P', tag: 'F1' },
+    { img: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=120&q=80&fit=crop', t: 'Bowl de poulet', m: '612 kcal · 58 P', tag: 'F1' },
+    { img: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=120&q=80&fit=crop', t: 'Saumon teriyaki', m: '548 kcal · 42 P', tag: 'C2' },
+    { img: 'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=120&q=80&fit=crop', t: 'Omelette épinards', m: '380 kcal · 30 P', tag: 'F1' },
   ];
   return (
     <div className="dt-app-screen" style={{ gap: 10 }}>
@@ -148,8 +160,9 @@ function ScreenRecipes() {
       </div>
       {recs.map((r) => (
         <div key={r.t} className="dt-recipe">
-          <div className="dt-recipe-img" style={{ background: `radial-gradient(60% 60% at 50% 40%, ${r.c}33, transparent 70%), linear-gradient(180deg, #1a1f2a, #0a0c12)` }}>
-            <span className="dt-recipe-tag">{r.tag}</span>
+          <div className="dt-recipe-img" style={{ position: 'relative', overflow: 'hidden' }}>
+            <Image src={r.img} alt={r.t} fill style={{ objectFit: 'cover' }} />
+            <span className="dt-recipe-tag" style={{ position: 'relative', zIndex: 1 }}>{r.tag}</span>
           </div>
           <div><div className="dt-recipe-t">{r.t}</div><div className="dt-recipe-m">{r.m}</div></div>
           <ChevronRight size={14} style={{ color: 'var(--bone-3)' }} />
