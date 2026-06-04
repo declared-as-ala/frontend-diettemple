@@ -11,6 +11,9 @@ type Gender = 'homme' | 'femme';
 interface VideoConfig { title: string; description: string; videoUrl: string; }
 interface Videos { homme: VideoConfig | null; femme: VideoConfig | null; }
 
+/* ── API host (without /api suffix) ─────────────────────────────────────────── */
+const API_HOST = API_URL.replace(/\/api\/?$/, ''); // https://api.diettemple.tn
+
 /* ── Helpers ────────────────────────────────────────────────────────────────── */
 function isYouTube(url: string) {
   return url.includes('youtube.com') || url.includes('youtu.be');
@@ -27,31 +30,44 @@ function vimeoEmbed(url: string) {
   return m ? `https://player.vimeo.com/video/${m[1]}?autoplay=1` : url;
 }
 
+/**
+ * Resolve a video URL.
+ * - Absolute URLs (http/https) → returned as-is (YouTube, Vimeo, external)
+ * - Relative URLs (/videos/...) → prepend API_HOST so the browser fetches
+ *   from api.diettemple.tn, not diettemple.tn
+ */
+function resolveUrl(url: string): string {
+  if (!url) return '';
+  if (url.startsWith('http://') || url.startsWith('https://')) return url;
+  return `${API_HOST}${url.startsWith('/') ? '' : '/'}${url}`;
+}
+
 /* ── Video player ───────────────────────────────────────────────────────────── */
 function VideoPlayer({ url }: { url: string }) {
-  if (!url) return (
+  const resolved = resolveUrl(url); // always absolute URL
+  if (!resolved) return (
     <div className="rj-placeholder">
       <div className="rj-placeholder-icon">🎬</div>
       <p>Vidéo à configurer</p>
     </div>
   );
-  if (isYouTube(url)) return (
+  if (isYouTube(resolved)) return (
     <iframe
-      src={youtubeEmbed(url)}
+      src={youtubeEmbed(resolved)}
       className="rj-iframe"
       allow="autoplay; encrypted-media; picture-in-picture"
       allowFullScreen
     />
   );
-  if (isVimeo(url)) return (
+  if (isVimeo(resolved)) return (
     <iframe
-      src={vimeoEmbed(url)}
+      src={vimeoEmbed(resolved)}
       className="rj-iframe"
       allow="autoplay; fullscreen"
       allowFullScreen
     />
   );
-  return <video src={url} controls autoPlay playsInline className="rj-video" />;
+  return <video src={resolved} controls autoPlay playsInline className="rj-video" />;
 }
 
 /* ── Main page ──────────────────────────────────────────────────────────────── */
@@ -63,7 +79,7 @@ export default function RejoindrePage() {
 
   /* fetch video config */
   useEffect(() => {
-    fetch(`${API_URL.replace('/api', '')}/api/landing/videos`)
+    fetch(`${API_HOST}/api/landing/videos`)
       .then(r => r.ok ? r.json() : null)
       .catch(() => null)
       .then(data => {
