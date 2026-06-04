@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { useReveal } from '@/hooks/useReveal';
 import { ArrowUpRight } from 'lucide-react';
 
@@ -14,20 +14,20 @@ import Products from '@/components/Products';
 import Society from '@/components/Society';
 import FinalCta from '@/components/FinalCta';
 import Footer from '@/components/Footer';
-import JoinModal from '@/components/JoinModal';
 
 export default function Home() {
-  const [joinOpen, setJoinOpen] = useState(false);
-  const open = () => setJoinOpen(true);
-  const close = () => setJoinOpen(false);
+  const router = useRouter();
+
+  // All "Rejoindre UH" CTAs navigate to the gender-choice + video page
+  const joinNow = () => router.push('/rejoindre');
 
   useReveal();
 
   return (
     <>
-      <Nav onJoin={open} />
+      <Nav onJoin={joinNow} />
       <main>
-        <Hero onJoin={open} />
+        <Hero onJoin={joinNow} />
         <Movement />
         <System />
         <Ranks />
@@ -35,15 +35,14 @@ export default function Home() {
         <Coaching />
         <Products />
         <Society />
-        <FinalCta onJoin={open} />
+        <FinalCta onJoin={joinNow} />
       </main>
       <Footer />
       <div className="dt-sticky-cta">
-        <button className="dt-btn dt-btn-primary" onClick={open}>
+        <button className="dt-btn dt-btn-primary" onClick={joinNow}>
           Rejoindre Ultimate Human <ArrowUpRight size={16} />
         </button>
       </div>
-      <JoinModal open={joinOpen} onClose={close} />
     </>
   );
 }
