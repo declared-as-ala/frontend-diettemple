@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ink Palette</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body{margin:0;background:var(--ink-1);height:100%;font-family:var(--font-body)}
+  .wrap{display:grid;grid-template-columns:repeat(6,1fr);height:100%;gap:1px;background:var(--line)}
+  .sw{position:relative;display:flex;align-items:flex-end;padding:14px 14px}
+  .sw .name{font-family:var(--font-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase}
+  .sw .hex{font-family:var(--font-mono);font-size:10px;letter-spacing:.04em;position:absolute;top:14px;left:14px}
+  .light .name,.light .hex{color:var(--ink-0)}
+  .dark .name,.dark .hex{color:var(--bone)}
+  .meta{position:absolute;right:14px;top:14px;font-family:var(--font-mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;opacity:.55}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="sw dark" style="background:#05060A"><span class="hex">#05060A</span><span class="meta">ink-0</span><span class="name">Obsidian</span></div>
+  <div class="sw dark" style="background:#0B0D12"><span class="hex">#0B0D12</span><span class="meta">ink-1</span><span class="name">Onyx</span></div>
+  <div class="sw dark" style="background:#13161E"><span class="hex">#13161E</span><span class="meta">ink-2</span><span class="name">Graphite</span></div>
+  <div class="sw dark" style="background:#1C2029"><span class="hex">#1C2029</span><span class="meta">ink-3</span><span class="name">Slate</span></div>
+  <div class="sw dark" style="background:#262B36"><span class="hex">#262B36</span><span class="meta">ink-4</span><span class="name">Iron</span></div>
+  <div class="sw light" style="background:#F4F2EC"><span class="hex">#F4F2EC</span><span class="meta">bone</span><span class="name">Bone</span></div>
+</div>
+</body>
+</html>

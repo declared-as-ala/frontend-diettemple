@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Glow & Elevation</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body{margin:0;background:var(--ink-0);height:100%;color:var(--bone);font-family:var(--font-body)}
+  .wrap{padding:30px;height:100%;box-sizing:border-box;display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:center}
+  .card{height:170px;background:var(--ink-2);border:1px solid var(--line);border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;position:relative}
+  .card .v{font-family:var(--font-display);font-weight:700;font-size:16px}
+  .card .l{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.18em;color:var(--bone-3);text-transform:uppercase;text-align:center;padding:0 16px}
+  .e1{box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
+  .e2{box-shadow:0 30px 80px -30px rgba(0,0,0,.8),inset 0 1px 0 rgba(255,255,255,.06)}
+  .e3{border-color:rgba(200,255,61,.5);box-shadow:0 0 60px -10px var(--volt-glow),inset 0 1px 0 rgba(255,255,255,.05)}
+  .e3 .v{color:var(--volt)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="card e1"><div class="v">— rest</div><div class="l">inset hi · default card</div></div>
+  <div class="card e2"><div class="v">— elevated</div><div class="l">drop · 0 30 80 -30 rgba(0,0,0,.8)</div></div>
+  <div class="card e3"><div class="v">— volt glow</div><div class="l">0 0 60 -10 volt · status / rank</div></div>
+</div>
+</body>
+</html>

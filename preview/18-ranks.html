@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Rank Glyphs</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body{margin:0;background:var(--ink-0);height:100%;color:var(--bone);font-family:var(--font-body)}
+  .wrap{padding:20px;height:100%;box-sizing:border-box;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;align-items:center}
+  .r{position:relative;background:var(--ink-2);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;justify-content:space-between;height:240px;overflow:hidden}
+  .r .num{font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;color:var(--bone-3)}
+  .r .nm{font-family:var(--font-display);font-weight:700;font-size:22px;letter-spacing:-.015em}
+  .r .ic{width:72px;height:72px;color:var(--bone-2)}
+  .r4 .ic{color:var(--volt)}
+  .r4{border-color:rgba(200,255,61,.4);box-shadow:0 0 60px -16px var(--volt-glow)}
+  .r4 .nm{color:var(--volt)}
+  .r3 .ic{color:var(--champagne)}
+  .r3 .nm{color:var(--champagne)}
+  .meta{font-family:var(--font-mono);font-size:9px;letter-spacing:.16em;color:var(--bone-3);text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="r r1"><div class="num">01</div><img class="ic" src="../assets/ranks/initiate.svg"><div><div class="nm">Initiate</div><div class="meta">D0–D30</div></div></div>
+  <div class="r r2"><div class="num">02</div><img class="ic" src="../assets/ranks/fighter.svg"><div><div class="nm">Fighter</div><div class="meta">D30–D90</div></div></div>
+  <div class="r r3"><div class="num">03</div><img class="ic" src="../assets/ranks/warrior.svg"><div><div class="nm">Warrior</div><div class="meta">D90–D180</div></div></div>
+  <div class="r r4"><div class="num" style="color:var(--volt)">04</div><img class="ic" src="../assets/ranks/elite.svg"><div><div class="nm">Elite</div><div class="meta">D180+</div></div></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,472 @@
+/* ====================================================================
+   site-extras.css — additions on top of site.css
+   reveal animations, badges, join modal, subscription cards, etc.
+   ==================================================================== */
+
+/* ---------- Reveal animations (scroll-driven) ---------- */
+.dt-reveal { opacity: 0; transform: translateY(18px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+.dt-reveal.is-in { opacity: 1; transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) { .dt-reveal { opacity: 1; transform: none; transition: none; } }
+
+/* hover lift for cards */
+.dt-rank, .dt-system-card, .dt-testimonial, .dt-sub-card { transition: transform .5s var(--ease), border-color .3s var(--ease), box-shadow .5s var(--ease); }
+
+/* ---------- Cinematic figure (placeholder model silhouette) ---------- */
+.dt-cine-figure {
+  position: absolute; inset: 0; pointer-events: none; opacity: .9;
+  background:
+    radial-gradient(closest-side at 50% 38%, rgba(244,242,236,.07), transparent 70%),
+    radial-gradient(closest-side at 50% 78%, rgba(216,201,163,.05), transparent 70%);
+}
+.dt-cine-portrait .dt-cine-figure {
+  background:
+    /* head */
+    radial-gradient(closest-side at 50% 22%, rgba(244,242,236,.10), transparent 60%),
+    /* shoulders */
+    radial-gradient(40% 14% at 50% 40%, rgba(244,242,236,.08), transparent 70%),
+    /* torso */
+    radial-gradient(30% 28% at 50% 70%, rgba(244,242,236,.05), transparent 70%),
+    /* rim light */
+    linear-gradient(115deg, transparent 40%, rgba(200,255,61,.05) 55%, transparent 65%);
+}
+.dt-cine-portrait { background: linear-gradient(180deg, #15171f 0%, #05060A 100%); }
+
+/* ---------- Movement figure ---------- */
+.dt-movement-figure { margin-top: 28px; max-width: 380px; }
+
+/* ---------- Rank badges (PNG-based) ---------- */
+.dt-rank { align-items: stretch; }
+.dt-rank-badge-wrap { position: relative; align-self: center; width: 140px; height: 140px; display: flex; align-items: center; justify-content: center; margin: 4px 0; }
+.dt-rank-badge { width: 100%; height: 100%; object-fit: contain; position: relative; z-index: 1; filter: drop-shadow(0 20px 30px rgba(0,0,0,.6)); transition: transform .6s var(--ease); }
+.dt-rank:hover .dt-rank-badge { transform: translateY(-4px) scale(1.04); }
+.dt-rank-badge-halo {
+  position: absolute; inset: 10%; border-radius: 50%; filter: blur(20px); opacity: .5;
+  background: radial-gradient(circle, rgba(255,255,255,.08), transparent 70%);
+}
+.dt-rank-default .dt-rank-badge-halo { background: radial-gradient(circle, rgba(184,124,90,.35), transparent 70%); }
+.dt-rank-champagne .dt-rank-badge-halo { background: radial-gradient(circle, rgba(216,201,163,.45), transparent 70%); }
+.dt-rank-volt .dt-rank-badge-halo { background: radial-gradient(circle, rgba(180,225,255,.45), transparent 70%); }
+/* override prior color tinting on text */
+.dt-rank-default .dt-rank-name { color: var(--bone); }
+.dt-rank-champagne .dt-rank-name { color: var(--champagne); }
+.dt-rank-volt .dt-rank-name { color: #E6F7FF; }
+.dt-rank-volt { border-color: rgba(200,225,255,.35); box-shadow: 0 30px 80px -30px rgba(200,225,255,.35); }
+.dt-rank-volt::before { background: radial-gradient(circle, rgba(200,225,255,.18), transparent 65%); }
+.dt-rank-tag { color: #E6F7FF; border-color: rgba(200,225,255,.35); background: rgba(200,225,255,.06); }
+
+/* ---------- Subscription section ---------- */
+.dt-sub { background: linear-gradient(180deg, var(--ink-1) 0%, var(--ink-0) 100%); }
+.dt-sub-grid { display: grid; grid-template-columns: 1fr; gap: 18px; }
+@media (min-width: 900px){ .dt-sub-grid { grid-template-columns: repeat(3, 1fr); } }
+.dt-sub-card { position: relative; background: var(--ink-2); border: 1px solid var(--line); border-radius: 22px; padding: 36px 28px; display: flex; flex-direction: column; gap: 22px; overflow: hidden; }
+.dt-sub-card.is-featured { background: var(--ink-0); border-color: rgba(200,255,61,.45); box-shadow: 0 30px 80px -20px var(--volt-glow); }
+.dt-sub-card.is-featured::before { content: ""; position: absolute; width: 280px; height: 280px; right: -100px; top: -100px; background: radial-gradient(circle, var(--volt-glow), transparent 60%); pointer-events: none; }
+.dt-sub-tag { position: absolute; top: 18px; right: 18px; font-family: var(--font-mono); font-size: 10px; letter-spacing: .2em; color: var(--ink-0); background: var(--volt); padding: 6px 12px; border-radius: 999px; text-transform: uppercase; box-shadow: 0 0 0 4px rgba(200,255,61,.16); }
+.dt-sub-head { display: flex; justify-content: space-between; align-items: baseline; }
+.dt-sub-label { font-family: var(--font-display); font-weight: 700; font-size: 28px; letter-spacing: -.03em; color: var(--bone); }
+.dt-sub-tier { font-family: var(--font-mono); font-size: 11px; letter-spacing: .18em; color: var(--bone-3); text-transform: uppercase; margin-top: 6px; }
+.dt-sub-card.is-featured .dt-sub-tier { color: var(--volt); }
+.dt-sub-price { position: relative; padding: 20px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); display: flex; flex-direction: column; gap: 4px; }
+.dt-sub-price-n { font-family: var(--font-display); font-weight: 800; font-size: 56px; letter-spacing: -.04em; color: var(--bone); line-height: 1; }
+.dt-sub-card.is-featured .dt-sub-price-n { color: var(--volt); }
+.dt-sub-card.dt-sub-champagne .dt-sub-price-n { color: var(--champagne); }
+.dt-sub-price-u { font-family: var(--font-mono); font-size: 12px; letter-spacing: .12em; color: var(--bone-2); text-transform: uppercase; margin-top: 4px; }
+.dt-sub-price-c { font-family: var(--font-display); font-weight: 700; font-size: 28px; letter-spacing: -.02em; color: var(--champagne); line-height: 1.1; }
+.dt-sub-commit { font-family: var(--font-mono); font-size: 10px; letter-spacing: .18em; color: var(--bone-3); text-transform: uppercase; margin-top: 8px; }
+.dt-sub-pitch { margin: 0; font-size: 14.5px; line-height: 1.5; color: var(--bone-2); }
+.dt-sub-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+.dt-sub-list li { display: grid; grid-template-columns: 18px 1fr; gap: 10px; align-items: start; font-size: 14px; color: var(--bone-2); line-height: 1.4; }
+.dt-sub-list i { width: 14px; height: 14px; color: var(--volt); margin-top: 2px; }
+.dt-sub-card.dt-sub-champagne .dt-sub-list i { color: var(--champagne); }
+.dt-sub-foot { margin-top: 32px; display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; font-family: var(--font-mono); font-size: 11px; letter-spacing: .14em; color: var(--bone-3); text-transform: uppercase; }
+.dt-sub-foot span { display: inline-flex; align-items: center; gap: 8px; }
+.dt-sub-foot i { width: 14px; height: 14px; color: var(--volt); }
+
+/* ---------- Join Modal ---------- */
+.dt-modal-back {
+  position: fixed; inset: 0; z-index: 1000;
+  background: rgba(5,6,10,0.78);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px; overflow-y: auto;
+  animation: dtBackIn .3s var(--ease);
+}
+@keyframes dtBackIn { from { opacity: 0; } to { opacity: 1; } }
+.dt-modal {
+  position: relative;
+  width: min(720px, 100%);
+  background: var(--ink-0);
+  border: 1px solid var(--line-strong);
+  border-radius: 24px;
+  padding: 0;
+  overflow: hidden;
+  box-shadow: 0 80px 160px -40px rgba(0,0,0,.95), 0 0 60px -20px var(--volt-glow);
+  animation: dtModalIn .5s var(--ease);
+}
+@keyframes dtModalIn { from { opacity: 0; transform: translateY(20px) scale(.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
+.dt-modal-close {
+  position: absolute; top: 18px; right: 18px; z-index: 10;
+  width: 36px; height: 36px; border-radius: 50%;
+  background: rgba(255,255,255,.06); border: 1px solid var(--line-strong);
+  color: var(--bone); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all var(--dur-micro) var(--ease);
+}
+.dt-modal-close:hover { background: rgba(255,255,255,.12); }
+.dt-modal-close i { width: 16px; height: 16px; }
+.dt-modal-stage { padding: 48px 40px 40px; display: flex; flex-direction: column; gap: 24px; }
+@media (max-width: 600px){ .dt-modal-stage { padding: 36px 24px 28px; } }
+.dt-modal-back-btn { align-self: flex-start; background: transparent; border: 0; color: var(--bone-2); font-family: var(--font-mono); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; cursor: pointer; padding: 0; display: inline-flex; align-items: center; gap: 8px; }
+.dt-modal-back-btn:hover { color: var(--bone); }
+.dt-modal-back-btn i { width: 14px; height: 14px; }
+.dt-modal-eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: .22em; color: var(--bone-3); text-transform: uppercase; }
+.dt-modal-title { font-family: var(--font-display); font-weight: 700; font-size: clamp(28px, 4vw, 40px); letter-spacing: -.03em; line-height: 1.05; margin: 0; color: var(--bone); }
+.dt-modal-sub { font-size: 15px; line-height: 1.5; color: var(--bone-2); margin: 0; }
+
+/* video player */
+.dt-modal-video {
+  position: relative; aspect-ratio: 16/9; border-radius: 16px; overflow: hidden;
+  border: 1px solid var(--line-strong);
+  background: #05060A;
+}
+.dt-modal-video-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(60% 50% at 30% 30%, rgba(200,255,61,.18), transparent 60%),
+    radial-gradient(50% 50% at 80% 80%, rgba(216,201,163,.12), transparent 60%),
+    linear-gradient(180deg, #1a1d24 0%, #05060A 100%);
+}
+.dt-modal-video-fig {
+  position: absolute; inset: 0; opacity: .8;
+  background:
+    radial-gradient(closest-side at 50% 40%, rgba(244,242,236,.10), transparent 70%),
+    radial-gradient(35% 20% at 50% 65%, rgba(244,242,236,.05), transparent 80%);
+}
+.dt-modal-video-grain {
+  position: absolute; inset: 0; opacity: .2; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/></svg>");
+}
+.dt-modal-play {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 80px; height: 80px; border-radius: 50%;
+  background: var(--volt); border: 0; cursor: pointer;
+  color: var(--ink-0);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 0 0 6px rgba(200,255,61,.18), 0 0 60px -10px var(--volt-glow);
+  transition: all var(--dur-micro) var(--ease);
+  animation: dtPlayPulse 2.4s var(--ease) infinite;
+}
+@keyframes dtPlayPulse {
+  0%, 100% { box-shadow: 0 0 0 6px rgba(200,255,61,.18), 0 0 60px -10px var(--volt-glow); }
+  50%      { box-shadow: 0 0 0 14px rgba(200,255,61,.08), 0 0 80px -5px var(--volt-glow); }
+}
+.dt-modal-play:hover { transform: translate(-50%, -50%) scale(1.06); }
+.dt-modal-play i { width: 28px; height: 28px; margin-left: 3px; }
+.dt-modal-video-meta { position: absolute; top: 14px; left: 14px; right: 14px; display: flex; justify-content: space-between; z-index: 2; }
+.dt-modal-video-eb { font-family: var(--font-mono); font-size: 10px; letter-spacing: .2em; color: var(--bone); text-transform: uppercase; background: rgba(0,0,0,.5); padding: 5px 10px; border-radius: 999px; border: 1px solid var(--line-strong); backdrop-filter: blur(8px); }
+.dt-modal-video-label { position: absolute; bottom: 14px; left: 14px; font-family: var(--font-mono); font-size: 10px; letter-spacing: .14em; color: var(--bone-2); text-transform: uppercase; }
+
+.dt-modal-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.dt-modal-actions .dt-btn { flex: 1; min-width: 200px; justify-content: center; }
+.dt-modal-foot { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .14em; color: var(--bone-3); text-transform: uppercase; padding-top: 12px; border-top: 1px solid var(--line); }
+.dt-modal-foot span { display: inline-flex; align-items: center; gap: 8px; }
+.dt-modal-foot i { width: 12px; height: 12px; color: var(--volt); }
+
+/* form */
+.dt-modal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 600px){ .dt-modal-grid { grid-template-columns: 1fr; } }
+.dt-field { display: flex; flex-direction: column; gap: 8px; }
+.dt-field.is-full { grid-column: 1 / -1; }
+.dt-field-l { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .18em; color: var(--bone-3); text-transform: uppercase; }
+.dt-field-l em { font-style: normal; color: var(--volt); margin-left: 4px; }
+.dt-field input, .dt-field select {
+  height: 48px; padding: 0 14px;
+  background: var(--ink-3); border: 1px solid var(--line);
+  border-radius: 10px; color: var(--bone);
+  font-family: var(--font-body); font-size: 14px;
+  transition: all var(--dur-micro) var(--ease);
+}
+.dt-field input::placeholder { color: var(--bone-3); }
+.dt-field input:focus, .dt-field select:focus {
+  outline: none; border-color: var(--volt);
+  box-shadow: 0 0 0 4px var(--volt-glow-soft);
+}
+.dt-modal-consent { display: flex; gap: 10px; align-items: flex-start; font-size: 13px; color: var(--bone-2); line-height: 1.4; }
+.dt-modal-consent input { width: 16px; height: 16px; margin-top: 2px; accent-color: var(--volt); }
+
+/* success */
+.dt-modal-success { text-align: center; align-items: center; }
+.dt-modal-success-mark {
+  width: 80px; height: 80px; border-radius: 50%;
+  background: var(--volt); color: var(--ink-0);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 0 0 8px rgba(200,255,61,.16), 0 0 60px -5px var(--volt-glow);
+  animation: dtPop .5s var(--ease);
+}
+.dt-modal-success-mark i { width: 36px; height: 36px; stroke-width: 3; }
+@keyframes dtPop { from { transform: scale(.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+/* ---------- Hero subtle parallax on logo + volt orb floating ---------- */
+@keyframes dtFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+.dt-hero-glow { animation: dtFloat 8s var(--ease) infinite; }
+
+/* ---------- Hero headline italic-em color: softer volt ---------- */
+.dt-hero-headline em { background: linear-gradient(180deg, var(--volt), var(--volt-deep)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+
+/* ---------- Products page header ---------- */
+.dt-products-hero { padding-top: 40px; padding-bottom: 40px; }
+.dt-products-hero-inner { max-width: 880px; }
+.dt-products-title { font-family: var(--font-display); font-weight: 700; font-size: clamp(48px, 7vw, 96px); line-height: 1; letter-spacing: -.04em; margin: 18px 0 22px; color: var(--bone); }
+.dt-products-title em { font-style: italic; font-family: var(--font-editorial); font-weight: 300; color: var(--volt); }
+.dt-products-kicker { font-size: 17px; line-height: 1.6; color: var(--bone-2); max-width: 60ch; margin: 0; }
+
+/* ---------- Sticky CTA on mobile ---------- */
+.dt-sticky-cta {
+  position: fixed; bottom: 16px; left: 16px; right: 16px;
+  z-index: 80; display: none;
+}
+.dt-sticky-cta button { width: 100%; height: 54px; justify-content: center; box-shadow: 0 20px 40px -10px rgba(0,0,0,.6), 0 0 0 0 var(--volt-glow); }
+@media (max-width: 720px){ .dt-sticky-cta { display: block; } }
+
+/* ====================================================================
+   MOBILE RESPONSIVE — Hamburger + Mobile Menu
+   ==================================================================== */
+
+/* ---------- Hamburger button ---------- */
+.dt-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px; height: 40px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 10px 9px;
+  transition: background var(--dur-micro) var(--ease), border-color var(--dur-micro) var(--ease);
+  flex-shrink: 0;
+}
+.dt-hamburger:hover { background: rgba(255,255,255,.10); border-color: rgba(255,255,255,.22); }
+.dt-hamburger span {
+  display: block;
+  width: 100%; height: 1.5px;
+  background: var(--bone);
+  border-radius: 999px;
+  transition: transform var(--dur-micro) var(--ease), opacity var(--dur-micro) var(--ease);
+  transform-origin: center;
+}
+.dt-hamburger.is-open span:nth-child(1) { transform: rotate(45deg) translate(4.5px, 4.5px); }
+.dt-hamburger.is-open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.dt-hamburger.is-open span:nth-child(3) { transform: rotate(-45deg) translate(4.5px, -4.5px); }
+
+/* Show hamburger on mobile, hide desktop CTA */
+@media (max-width: 799px) {
+  .dt-hamburger { display: flex; }
+  .dt-nav-cta-desk { display: none !important; }
+}
+
+/* ---------- Mobile overlay (darkens screen behind panel) ---------- */
+.dt-mobile-overlay {
+  position: fixed; inset: 0;
+  z-index: 95;
+  background: rgba(5,6,10,.72);
+  backdrop-filter: blur(8px) saturate(140%);
+  -webkit-backdrop-filter: blur(8px) saturate(140%);
+  animation: dtMobileOverlayIn .3s var(--ease);
+}
+@keyframes dtMobileOverlayIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* ---------- Mobile panel (slides down from top) ---------- */
+.dt-mobile-panel {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  background: var(--ink-1);
+  border-bottom: 1px solid var(--line-strong);
+  /* Start content below the fixed nav bar (16px pad + 60px inner + 16px pad = 92px) */
+  padding-top: 92px;
+  box-shadow: 0 40px 80px -20px rgba(0,0,0,.9);
+  animation: dtMobilePanelIn .4s var(--ease);
+  overflow: hidden;
+}
+/* subtle top volt glow */
+.dt-mobile-panel::before {
+  content: "";
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, transparent 10%, var(--volt) 50%, transparent 90%);
+  opacity: .45;
+}
+@keyframes dtMobilePanelIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- Mobile nav links list ---------- */
+.dt-mobile-links {
+  list-style: none; padding: 0; margin: 0;
+}
+.dt-mobile-links li {
+  border-bottom: 1px solid var(--line);
+  animation: dtMobileLinkIn .5s var(--ease) backwards;
+}
+@keyframes dtMobileLinkIn {
+  from { opacity: 0; transform: translateX(-14px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+.dt-mobile-links li a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(22px, 6vw, 30px);
+  letter-spacing: -.03em;
+  color: var(--bone);
+  transition: color var(--dur-micro) var(--ease), padding-left var(--dur-micro) var(--ease);
+}
+.dt-mobile-links li a:hover { color: var(--volt); padding-left: 32px; }
+.dt-mobile-links li a i { width: 20px; height: 20px; color: var(--bone-3); flex-shrink: 0; transition: color var(--dur-micro) var(--ease), transform var(--dur-micro) var(--ease); }
+.dt-mobile-links li a:hover i { color: var(--volt); transform: translateX(4px); }
+
+/* ---------- Mobile footer buttons ---------- */
+.dt-mobile-foot {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-top: 1px solid var(--line);
+}
+.dt-mobile-btn {
+  width: 100%;
+  justify-content: center;
+  height: 52px;
+}
+
+/* ---------- Mobile meta trust badges ---------- */
+.dt-mobile-meta {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  padding: 14px 24px 24px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: .18em;
+  color: var(--bone-3);
+  text-transform: uppercase;
+}
+.dt-mobile-meta span { display: inline-flex; align-items: center; gap: 6px; }
+.dt-mobile-meta i { width: 12px; height: 12px; color: var(--volt); }
+
+/* Hide mobile overlay on desktop */
+@media (min-width: 800px) {
+  .dt-mobile-overlay { display: none !important; }
+}
+
+/* ====================================================================
+   HERO — mobile refinements
+   ==================================================================== */
+
+/* Tighten headline on very small screens */
+@media (max-width: 400px) {
+  .dt-hero-headline { font-size: 48px; }
+  .dt-hero-sub { font-size: 15px; }
+}
+
+/* Stack hero CTAs on small screens */
+@media (max-width: 480px) {
+  .dt-hero-ctas { flex-direction: column; }
+  .dt-hero-ctas .dt-btn { justify-content: center; }
+}
+
+/* Reduce hero padding-top on short / small screens */
+@media (max-width: 640px) {
+  .dt-hero-section { padding-top: 100px; padding-bottom: 100px; }
+  .dt-hero-content { padding-top: 40px; }
+  .dt-hero-ctas { margin-bottom: 48px; }
+}
+
+/* Adjust scroll hint visibility on short screens */
+@media (max-height: 700px) {
+  .dt-hero-scrollhint { display: none; }
+}
+
+/* ====================================================================
+   SECTION GENERAL — mobile padding / typography tweaks
+   ==================================================================== */
+
+@media (max-width: 640px) {
+  .dt-section { padding: 72px 0; }
+  .dt-sec-title { font-size: clamp(30px, 8vw, 48px); }
+  .dt-sec-kicker { font-size: 15px; }
+
+  /* System loop: tighter gaps */
+  .dt-system-step { gap: 12px; padding-bottom: 20px; }
+  .dt-system-card { padding: 18px; }
+
+  /* Coaching CTA stack */
+  .dt-coaching-ctas { flex-direction: column; }
+  .dt-coaching-ctas .dt-btn { justify-content: center; }
+
+  /* Society stats 2-col always */
+  .dt-society-stats { gap: 16px; }
+  .dt-soc-stat-n { font-size: clamp(28px, 7vw, 44px); }
+
+  /* Final CTA */
+  .dt-final { padding: 48px 0 80px; }
+  .dt-final-ctas { flex-direction: column; align-items: center; }
+  .dt-final-ctas .dt-btn { width: 100%; max-width: 340px; justify-content: center; }
+
+  /* Footer */
+  .dt-footer-top { gap: 36px; }
+  .dt-footer-bot { flex-direction: column; align-items: flex-start; gap: 12px; }
+}
+
+/* Products page — filter row stack */
+@media (max-width: 640px) {
+  .dt-products-head { flex-direction: column; align-items: flex-start; }
+  .dt-products-toggle { width: 100%; justify-content: space-between; }
+}
+
+/* Subscription cards: tighten padding */
+@media (max-width: 640px) {
+  .dt-sub-card { padding: 24px 20px; }
+  .dt-sub-price-n { font-size: 44px; }
+}
+
+/* Rank cards: show single column below 400px (already 1fr by default but reinforce) */
+@media (max-width: 399px) {
+  .dt-rank { padding: 20px 16px; }
+  .dt-rank-badge-wrap { width: 110px; height: 110px; }
+}
+
+/* Modal: tighter on very small phones */
+@media (max-width: 400px) {
+  .dt-modal-stage { padding: 28px 16px 20px; }
+  .dt-modal-grid { grid-template-columns: 1fr; }
+  .dt-modal-title { font-size: 26px; }
+}
+
+/* ====================================================================
+   FIX: Nav always renders above page content
+   Promotes nav to GPU compositor layer so it can never be obscured by
+   page sections that use CSS transforms or filters (which create new
+   stacking contexts).
+   ==================================================================== */
+.dt-nav {
+  will-change: transform;
+  /* Force a new stacking context at z-index 100 in its own layer */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+/* Ensure page sections don't escape below the nav's stacking order */
+main { position: relative; z-index: 0; isolation: isolate; }
+
+/* On mobile: footer + final section need bottom clearance for the sticky CTA
+   (sticky CTA is 54px tall + 16px bottom = 70px total footprint) */
+@media (max-width: 720px) {
+  .dt-footer { padding-bottom: 90px; }
+  .dt-final  { padding-bottom: 110px; }
+}

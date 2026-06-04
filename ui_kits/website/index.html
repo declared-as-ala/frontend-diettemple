@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DietTemple — Devenez l'Ultimate Human</title>
+<link rel="stylesheet" href="../../colors_and_type.css">
+<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="site-extras.css">
+<link rel="stylesheet" href="site-luxe.css">
+<link rel="icon" type="image/webp" href="../../assets/logo.webp">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body data-screen-label="DietTemple — Page d'accueil">
+<div id="root"></div>
+
+<script type="text/babel" src="Hooks.jsx"></script>
+<script type="text/babel" src="Nav.jsx"></script>
+<script type="text/babel" src="Hero.jsx"></script>
+<script type="text/babel" src="Movement.jsx"></script>
+<script type="text/babel" src="Ranks.jsx"></script>
+<script type="text/babel" src="System.jsx"></script>
+<script type="text/babel" src="Subscription.jsx"></script>
+<script type="text/babel" src="AppShowcase.jsx"></script>
+<script type="text/babel" src="Coaching.jsx"></script>
+<script type="text/babel" src="Society.jsx"></script>
+<script type="text/babel" src="Final.jsx"></script>
+<script type="text/babel" src="JoinModal.jsx"></script>
+
+<script type="text/babel">
+const { useState, useEffect, useRef } = React;
+
+function useReveal() {
+  useEffect(() => {
+    const els = document.querySelectorAll('.dt-reveal');
+    if (!('IntersectionObserver' in window)) {
+      els.forEach((el) => el.classList.add('is-in'));
+      return;
+    }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -10% 0px' });
+    els.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  });
+}
+
+/* Navigate to the rejoindre page for all join CTAs */
+const joinNow = () => { window.location.href = 'rejoindre.html'; };
+
+function App() {
+  useReveal();
+
+  useEffect(() => {
+    const id = setTimeout(() => window.lucide && lucide.createIcons(), 30);
+    return () => clearTimeout(id);
+  });
+
+  // Hero parallax: translate background as user scrolls
+  useEffect(() => {
+    const onScroll = () => {
+      const y = window.scrollY;
+      const cine = document.querySelector('.dt-hero-section .dt-cine');
+      const glow = document.querySelector('.dt-hero-glow');
+      if (cine) cine.style.transform = `translateY(${y * 0.18}px)`;
+      if (glow) glow.style.transform = `translate(${y * 0.04}px, ${y * 0.06}px)`;
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  return (
+    <>
+      <Nav onJoin={joinNow} />
+      <main>
+        <Hero onJoin={joinNow} />
+        <Movement />
+        <System />
+        <Ranks />
+        <Subscription onJoin={joinNow} />
+        <AppShowcase />
+        <Coaching />
+        <Society />
+        <FinalCta onJoin={joinNow} />
+      </main>
+      <Footer />
+      <div className="dt-sticky-cta">
+        <button className="dt-btn dt-btn-primary" onClick={joinNow}>
+          Rejoindre Ultimate Human <i data-lucide="arrow-up-right"></i>
+        </button>
+      </div>
+    </>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
+</script>
+</body>
+</html>

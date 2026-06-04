@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Brand Accent — Volt</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body{margin:0;background:var(--ink-1);height:100%;font-family:var(--font-body)}
+  .wrap{display:grid;grid-template-columns:1.4fr .8fr .8fr .8fr;height:100%;gap:1px;background:var(--line)}
+  .hero{background:var(--ink-0);padding:24px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;width:260px;height:260px;right:-80px;top:-60px;background:radial-gradient(circle,var(--volt-glow) 0%,transparent 65%);filter:blur(6px)}
+  .hero .tag{font-family:var(--font-mono);font-size:10px;letter-spacing:.2em;color:var(--bone-3);text-transform:uppercase;z-index:1}
+  .hero .num{font-family:var(--font-display);font-weight:800;font-size:96px;line-height:.85;letter-spacing:-.06em;color:var(--volt);z-index:1}
+  .hero .lbl{font-family:var(--font-display);font-weight:700;font-size:14px;letter-spacing:.04em;color:var(--bone);z-index:1}
+  .sw{position:relative;padding:14px;display:flex;flex-direction:column;justify-content:space-between}
+  .sw .name{font-family:var(--font-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase}
+  .sw .hex{font-family:var(--font-mono);font-size:10px;letter-spacing:.04em}
+  .light .name,.light .hex{color:var(--ink-0)}
+  .dark .name,.dark .hex{color:var(--bone)}
+  .meta{font-family:var(--font-mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;opacity:.55}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hero">
+    <div class="tag">— Brand · Primary accent</div>
+    <div><div class="num">C8FF3D</div><div class="lbl" style="margin-top:6px">Volt</div></div>
+  </div>
+  <div class="sw light" style="background:#C8FF3D"><span class="meta">volt</span><span class="hex">#C8FF3D</span><span class="name">Volt</span></div>
+  <div class="sw light" style="background:#A0C800"><span class="meta">volt-deep</span><span class="hex">#A0C800</span><span class="name">Volt deep</span></div>
+  <div class="sw dark" style="background:#6E8A00"><span class="meta">volt-darker</span><span class="hex">#6E8A00</span><span class="name">Volt darker</span></div>
+</div>
+</body>
+</html>

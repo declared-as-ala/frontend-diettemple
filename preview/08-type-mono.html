@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Type — Mono / Data</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body{margin:0;background:var(--ink-1);height:100%;color:var(--bone)}
+  .wrap{padding:24px 28px;display:grid;grid-template-columns:1fr 1fr;gap:18px;height:100%;box-sizing:border-box;align-content:center}
+  .panel{background:var(--ink-2);border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;flex-direction:column;justify-content:space-between}
+  .lbl{font-family:var(--font-mono);font-size:10px;letter-spacing:.18em;color:var(--bone-3);text-transform:uppercase}
+  .num{font-family:var(--font-mono);font-weight:500;font-size:46px;letter-spacing:.02em;line-height:1;color:var(--bone);font-feature-settings:"tnum" 1,"zero" 1}
+  .num .u{font-size:18px;color:var(--bone-3);margin-left:6px;letter-spacing:.04em}
+  .num .v{color:var(--volt)}
+  .row{display:flex;align-items:baseline;justify-content:space-between;font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;color:var(--bone-2)}
+  .row .a{color:var(--bone-3)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="panel">
+    <div class="lbl">— Body fat · 90d</div>
+    <div class="num"><span class="v">−14.2</span><span class="u">%</span></div>
+    <div class="row"><span class="a">Tier 03 · Warrior</span><span>+312 kcal · D14</span></div>
+  </div>
+  <div class="panel">
+    <div class="lbl">— Specimen · tabular</div>
+    <div style="font-family:var(--font-mono);font-size:14px;letter-spacing:.04em;line-height:1.7;color:var(--bone-2)">
+      0123456789<br>
+      ABCDEFG · abcdefg<br>
+      <span style="color:var(--bone-3)">→ ⌘ × ° % g kcal</span>
+    </div>
+    <div class="lbl">JetBrains Mono · 500 · tnum</div>
+  </div>
+</div>
+</body>
+</html>

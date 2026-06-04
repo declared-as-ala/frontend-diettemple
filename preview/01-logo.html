@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>DietTemple — Logo</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body{margin:0;background:var(--ink-1);height:100%;}
+  .wrap{display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:0;height:100%;}
+  .cell{display:flex;align-items:center;justify-content:center;border-right:1px solid var(--line);padding:24px;position:relative;}
+  .cell:last-child{border-right:none}
+  .cell .lbl{position:absolute;left:14px;bottom:10px;font-family:var(--font-mono);font-size:10px;letter-spacing:.18em;color:var(--bone-3);text-transform:uppercase}
+  .dark{background:var(--ink-0)}
+  .mid{background:var(--ink-2)}
+  .light{background:var(--bone)}
+  .light .lbl{color:var(--bronze)}
+  img{width:84px;height:84px;display:block}
+  .wordmark{display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+  .wordmark .wm{font-family:var(--font-display);font-weight:800;font-size:34px;letter-spacing:-.04em;color:var(--bone)}
+  .wordmark .wm em{font-style:normal;color:var(--volt)}
+  .wordmark .sub{font-family:var(--font-mono);font-size:9px;letter-spacing:.3em;color:var(--bone-3);text-transform:uppercase}
+  .light .wordmark .wm{color:var(--ink-0)} .light .wordmark .wm em{color:var(--volt-darker)} .light .wordmark .sub{color:var(--bronze)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="cell dark">
+    <div class="wordmark">
+      <div style="display:flex;align-items:center;gap:14px">
+        <img src="../assets/logo.webp" alt="">
+        <div class="wm">Diet<em>Temple</em></div>
+      </div>
+      <div class="sub" style="margin-left:98px">Ultimate Human Society</div>
+    </div>
+    <div class="lbl">Primary · on Obsidian</div>
+  </div>
+  <div class="cell mid">
+    <img src="../assets/logo.webp" alt="">
+    <div class="lbl">Mark · on Graphite</div>
+  </div>
+  <div class="cell light">
+    <img src="../assets/logo.webp" alt="" style="filter:none">
+    <div class="lbl">Mark · on Bone</div>
+  </div>
+</div>
+</body>
+</html>

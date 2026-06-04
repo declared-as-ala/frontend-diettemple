@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Glass — Nav & Modal</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body{margin:0;background:var(--ink-0);height:100%;color:var(--bone);font-family:var(--font-body)}
+  .scene{position:relative;height:100%;background:radial-gradient(80% 60% at 30% 20%,rgba(200,255,61,.18),transparent 60%),radial-gradient(60% 60% at 80% 80%,rgba(216,201,163,.12),transparent 60%),var(--ink-0);overflow:hidden;padding:16px;box-sizing:border-box}
+  .nav{position:absolute;top:18px;left:50%;transform:translateX(-50%);width:min(86%,640px);height:54px;background:rgba(11,13,18,.55);backdrop-filter:blur(20px) saturate(140%);-webkit-backdrop-filter:blur(20px) saturate(140%);border:1px solid var(--line-strong);border-radius:999px;padding:0 18px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 20px 40px -20px rgba(0,0,0,.6)}
+  .brand{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:800;font-size:14px;letter-spacing:-.02em}
+  .brand img{width:22px;height:22px}
+  .brand em{font-style:normal;color:var(--volt)}
+  .links{display:flex;gap:18px;font-family:var(--font-body);font-size:12.5px;letter-spacing:.02em;color:var(--bone-2)}
+  .links span.on{color:var(--bone)}
+  .cta{height:34px;padding:0 14px;border-radius:999px;background:var(--volt);color:var(--ink-0);font-family:var(--font-display);font-weight:600;font-size:12px;display:flex;align-items:center;gap:6px}
+  .lbl{position:absolute;left:24px;bottom:18px;font-family:var(--font-mono);font-size:10px;letter-spacing:.18em;color:var(--bone-3);text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="scene">
+  <div class="nav">
+    <div class="brand"><img src="../assets/logo.webp"><span>Diet<em>Temple</em></span></div>
+    <div class="links"><span class="on">System</span><span>Ranks</span><span>App</span><span>Products</span></div>
+    <div class="cta">Join UH →</div>
+  </div>
+  <div class="lbl">— Glass nav · blur 20 / sat 140 · 1px line-strong</div>
+</div>
+</body>
+</html>

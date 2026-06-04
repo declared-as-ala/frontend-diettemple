@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Pricing — Standard vs UH</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body{margin:0;background:var(--ink-1);height:100%;color:var(--bone);font-family:var(--font-body)}
+  .wrap{padding:22px;height:100%;box-sizing:border-box;display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:center}
+  .card{background:var(--ink-2);border:1px solid var(--line);border-radius:14px;padding:20px;height:220px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+  .ebrow{font-family:var(--font-mono);font-size:10px;letter-spacing:.18em;color:var(--bone-3);text-transform:uppercase;display:flex;justify-content:space-between}
+  .nm{font-family:var(--font-display);font-weight:700;font-size:20px;letter-spacing:-.015em}
+  .nm small{display:block;color:var(--bone-2);font-weight:300;font-size:13px;margin-top:4px;letter-spacing:0}
+  .prices{display:flex;align-items:flex-end;gap:24px;border-top:1px solid var(--line);padding-top:14px}
+  .pr{display:flex;flex-direction:column;gap:2px}
+  .pr .l{font-family:var(--font-mono);font-size:9px;letter-spacing:.18em;color:var(--bone-3);text-transform:uppercase}
+  .pr .v{font-family:var(--font-display);font-weight:700;font-size:24px;letter-spacing:-.02em;font-feature-settings:"tnum" 1}
+  .pr.std .v{color:var(--bone-3);text-decoration:line-through;text-decoration-color:var(--bone-4)}
+  .pr.uh .v{color:var(--volt)}
+  .pr.uh .l{color:var(--volt)}
+  .seal{height:24px;padding:0 10px;border-radius:999px;display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;border:1px solid rgba(216,201,163,.4);color:var(--champagne)}
+  .save{font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;color:var(--volt);text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="card">
+    <div class="ebrow"><span>— Supplement · 01</span><span class="seal">UH −29%</span></div>
+    <div class="nm">Whey Protocol<small>Vanilla · 1 kg</small></div>
+    <div class="prices">
+      <div class="pr std"><span class="l">Standard</span><span class="v">€59</span></div>
+      <div class="pr uh"><span class="l">UH Member</span><span class="v">€42</span></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="ebrow"><span>— Meal kit · 04</span><span class="save">Save €23</span></div>
+    <div class="nm">7‑day Lean Stack<small>Protocol · F1 / Cut</small></div>
+    <div class="prices">
+      <div class="pr std"><span class="l">Standard</span><span class="v">€89</span></div>
+      <div class="pr uh"><span class="l">UH Member</span><span class="v">€66</span></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

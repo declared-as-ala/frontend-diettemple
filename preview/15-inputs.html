@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Inputs</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body{margin:0;background:var(--ink-1);height:100%;color:var(--bone);font-family:var(--font-body)}
+  .wrap{padding:26px;height:100%;box-sizing:border-box;display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:center}
+  .field{display:flex;flex-direction:column;gap:8px}
+  .lbl{font-family:var(--font-mono);font-size:10px;letter-spacing:.18em;color:var(--bone-3);text-transform:uppercase}
+  .input{height:48px;background:var(--ink-3);border:1px solid var(--line);border-radius:10px;padding:0 16px;color:var(--bone);font-family:var(--font-body);font-size:14px;display:flex;align-items:center;justify-content:space-between}
+  .input.focused{border-color:var(--volt);box-shadow:0 0 0 4px rgba(200,255,61,.16)}
+  .placeholder{color:var(--bone-3)}
+  .seg{display:inline-flex;background:var(--ink-3);border:1px solid var(--line);border-radius:999px;padding:4px;gap:0}
+  .seg button{background:transparent;border:none;color:var(--bone-2);padding:8px 16px;border-radius:999px;font-family:var(--font-display);font-weight:500;font-size:13px;cursor:pointer}
+  .seg button.on{background:var(--volt);color:var(--ink-0)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="field">
+    <div class="lbl">— Email · default</div>
+    <div class="input"><span class="placeholder">you@diettemple.com</span><span style="font-family:var(--font-mono);font-size:11px;color:var(--bone-3)">↵</span></div>
+  </div>
+  <div class="field">
+    <div class="lbl">— Email · focused</div>
+    <div class="input focused"><span>elite@diettemple.com</span><span style="font-family:var(--font-mono);font-size:11px;color:var(--volt)">●</span></div>
+  </div>
+  <div class="field">
+    <div class="lbl">— Segment</div>
+    <div class="seg"><button class="on">Plan</button><button>Coach</button><button>Scan</button></div>
+  </div>
+  <div class="field">
+    <div class="lbl">— Toggle / member</div>
+    <div style="display:flex;align-items:center;gap:12px">
+      <div style="width:44px;height:24px;background:var(--volt);border-radius:999px;position:relative"><div style="width:18px;height:18px;border-radius:50%;background:var(--ink-0);position:absolute;top:3px;right:3px"></div></div>
+      <div style="font-family:var(--font-display);font-weight:600;font-size:13px">UH Member pricing</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

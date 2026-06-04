@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Motion</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body{margin:0;background:var(--ink-1);height:100%;color:var(--bone);font-family:var(--font-body)}
+  .wrap{padding:22px 26px;height:100%;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;gap:16px}
+  .row{display:grid;grid-template-columns:120px 1fr 100px;align-items:center;gap:14px}
+  .lbl{font-family:var(--font-mono);font-size:10px;letter-spacing:.18em;color:var(--bone-3);text-transform:uppercase}
+  .track{height:24px;background:var(--ink-3);border-radius:999px;position:relative;overflow:hidden;border:1px solid var(--line)}
+  .head{position:absolute;top:2px;left:2px;height:18px;width:54px;background:var(--volt);border-radius:999px;box-shadow:0 0 16px -2px var(--volt-glow)}
+  .a1 .head{animation:m1 1.8s cubic-bezier(.2,.7,.1,1) infinite alternate}
+  .a2 .head{animation:m1 1.8s cubic-bezier(.2,.7,.1,1) infinite alternate;animation-duration:.76s}
+  .a3 .head{animation:m1 1.8s ease-in-out infinite alternate}
+  .meta{font-family:var(--font-mono);font-size:10px;color:var(--bone-3);text-align:right}
+  @keyframes m1{from{left:2px}to{left:calc(100% - 56px)}}
+  .ease{font-family:var(--font-mono);font-size:10px;color:var(--bone-2);letter-spacing:.04em;text-align:right}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="row"><div class="lbl">— micro · 240ms</div><div class="track a2"><div class="head"></div></div><div class="meta">hover · focus</div></div>
+  <div class="row"><div class="lbl">— base · 480ms</div><div class="track a1"><div class="head"></div></div><div class="meta">component</div></div>
+  <div class="row"><div class="lbl">— slow · 760ms</div><div class="track a3"><div class="head"></div></div><div class="meta">section reveal</div></div>
+  <div class="row"><div class="lbl">— easing</div><div class="ease" style="text-align:left">cubic-bezier(0.2, 0.7, 0.1, 1)</div><div class="meta">no bounce</div></div>
+</div>
+</body>
+</html>

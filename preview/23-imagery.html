@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Imagery & Placeholders</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body{margin:0;background:var(--ink-1);height:100%;color:var(--bone);font-family:var(--font-body)}
+  .wrap{padding:20px;height:100%;box-sizing:border-box;display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:14px;align-items:center}
+  .ph{background:var(--ink-3);border:1px dashed var(--line-strong);border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--bone-3);font-family:var(--font-mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;gap:8px;position:relative}
+  .ph .ic{width:20px;height:20px;border:1px solid var(--bone-3);border-radius:50%;display:flex;align-items:center;justify-content:center}
+  .cinema{height:240px;background:radial-gradient(80% 60% at 30% 30%,rgba(200,255,61,.16),transparent 60%),linear-gradient(180deg,#0B0D12 0%,#05060A 100%);position:relative;overflow:hidden}
+  .cinema::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,6,10,.6) 0%,transparent 30%,transparent 70%,rgba(5,6,10,.9) 100%)}
+  .cinema .note{position:absolute;left:18px;bottom:14px;font-family:var(--font-mono);font-size:10px;letter-spacing:.18em;color:var(--bone-3);text-transform:uppercase;z-index:1}
+  .portrait{height:240px;aspect-ratio:4/5}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="ph cinema" style="border:none;border-radius:14px"><div class="note">— Hero · 21:9 · single subject · cool shadows / warm highlights</div></div>
+  <div class="ph portrait"><div class="ic">×</div>Image · athlete portrait<br><span style="opacity:.6;letter-spacing:.08em;text-transform:none">4:5 · side-lit · b&amp;w grade</span></div>
+  <div class="ph portrait"><div class="ic">×</div>Image · plate scan<br><span style="opacity:.6;letter-spacing:.08em;text-transform:none">overhead · macro · cold light</span></div>
+</div>
+</body>
+</html>

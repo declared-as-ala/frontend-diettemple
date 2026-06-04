@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DietTemple — Nos Produits</title>
+<link rel="stylesheet" href="../../colors_and_type.css">
+<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="site-extras.css">
+<link rel="stylesheet" href="site-luxe.css">
+<link rel="icon" type="image/webp" href="../../assets/logo.webp">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body data-screen-label="DietTemple — Page produits">
+<div id="root"></div>
+
+<script type="text/babel" src="Hooks.jsx"></script>
+<script type="text/babel" src="Nav.jsx"></script>
+<script type="text/babel" src="Final.jsx"></script>
+<script type="text/babel" src="JoinModal.jsx"></script>
+<script type="text/babel" src="Products.jsx"></script>
+
+<script type="text/babel">
+const { useState, useEffect } = React;
+
+function Header({ memberMode, setMemberMode }) {
+  return (
+    <section className="dt-section dt-products-hero">
+      <div className="dt-container">
+        <div className="dt-products-hero-inner dt-reveal">
+          <div className="dt-eyebrow">— Nos Produits</div>
+          <h1 className="dt-products-title">Conçus pour le <em>protocole</em>.</h1>
+          <p className="dt-products-kicker">
+            Suppléments, packs repas, performance et bien‑être. Chaque produit affiche son prix Standard et son tarif Membre UH.
+            Les membres descendent jusqu'à 30% sur l'ensemble du catalogue.
+          </p>
+          <div className="dt-products-toggle" style={{ marginTop: 32 }}>
+            <span className={!memberMode ? 'on' : ''}>Standard</span>
+            <button
+              className={`dt-switch ${memberMode ? 'on' : ''}`}
+              onClick={() => setMemberMode(!memberMode)}
+              aria-label="Basculer tarif Membre UH"
+            >
+              <span />
+            </button>
+            <span className={memberMode ? 'on champ' : ''}>Tarif Membre UH</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Grid({ memberMode }) {
+  return (
+    <section className="dt-section" style={{ paddingTop: 0 }}>
+      <div className="dt-container">
+        <div className="dt-products-grid">
+          {PRODUCTS.map((p) => <ProductCard key={p.id} p={p} member={memberMode} />)}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ProductsApp() {
+  const [memberMode, setMemberMode] = useState(false);
+  const [joinOpen, setJoinOpen] = useState(false);
+
+  useEffect(() => {
+    const els = document.querySelectorAll('.dt-reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    els.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, [memberMode]);
+
+  useEffect(() => {
+    const id = setTimeout(() => window.lucide && lucide.createIcons(), 30);
+    return () => clearTimeout(id);
+  });
+
+  return (
+    <>
+      <Nav onJoin={() => setJoinOpen(true)} />
+      <main style={{ paddingTop: 110 }}>
+        <Header memberMode={memberMode} setMemberMode={setMemberMode} />
+        <Grid memberMode={memberMode} />
+        <FinalCta onJoin={() => setJoinOpen(true)} />
+      </main>
+      <Footer />
+      <JoinModal open={joinOpen} onClose={() => setJoinOpen(false)} />
+    </>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<ProductsApp />);
+</script>
+</body>
+</html>

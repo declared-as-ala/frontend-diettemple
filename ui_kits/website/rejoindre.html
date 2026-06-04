@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DietTemple — Rejoindre Ultimate Human</title>
+<link rel="stylesheet" href="../../colors_and_type.css">
+<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="site-extras.css">
+<link rel="stylesheet" href="site-luxe.css">
+<link rel="icon" type="image/webp" href="../../assets/logo.webp">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<style>
+/* ── Rejoindre page specific ── */
+
+.rj-page {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  background: var(--ink-0);
+  color: var(--bone);
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* radial ambient glow */
+.rj-bg {
+  position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background:
+    radial-gradient(60% 50% at 20% 10%, rgba(200,255,61,.06), transparent 55%),
+    radial-gradient(50% 50% at 80% 90%, rgba(200,255,61,.04), transparent 55%);
+}
+
+/* ── topbar (minimal nav) ── */
+.rj-bar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 16px 0;
+}
+.rj-bar-inner {
+  width: min(1180px, calc(100% - 32px)); margin: 0 auto;
+  height: 56px;
+  background: rgba(11,13,18,.55);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  border: 1px solid var(--line-strong); border-radius: 999px;
+  padding: 0 20px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.rj-back {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: .18em;
+  color: var(--bone-2); text-transform: uppercase;
+  background: transparent; border: 0; cursor: pointer;
+  transition: color var(--dur-micro) var(--ease);
+}
+.rj-back:hover { color: var(--bone); }
+.rj-back i { width: 14px; height: 14px; }
+.rj-step {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: .2em;
+  color: var(--bone-3); text-transform: uppercase;
+}
+
+/* ── main content ── */
+.rj-main {
+  position: relative; z-index: 1;
+  padding-top: 110px; padding-bottom: 80px;
+  display: flex; flex-direction: column; align-items: center;
+  min-height: 100svh;
+}
+
+.rj-eyebrow {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: .24em;
+  color: var(--bone-3); text-transform: uppercase;
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 24px;
+}
+.rj-headline {
+  font-family: var(--font-display); font-weight: 800;
+  font-size: clamp(32px, 6vw, 72px);
+  line-height: 1; letter-spacing: -.04em; text-transform: uppercase;
+  text-align: center; margin: 0 0 12px;
+}
+.rj-headline em {
+  font-style: italic; font-family: var(--font-editorial);
+  font-weight: 300; color: var(--volt); text-transform: none; letter-spacing: -.02em;
+}
+.rj-sub {
+  font-size: 16px; line-height: 1.6; color: var(--bone-2); text-align: center;
+  max-width: 44ch; margin: 0 0 56px;
+}
+
+/* ── gender cards ── */
+.rj-cards {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+  width: min(820px, calc(100% - 48px));
+  margin-bottom: 48px;
+}
+@media (max-width: 580px) { .rj-cards { grid-template-columns: 1fr; gap: 16px; } }
+
+.rj-card {
+  position: relative;
+  background: var(--ink-2);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 36px 28px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all .5s var(--ease);
+  display: flex; flex-direction: column; align-items: center; gap: 20px;
+  min-height: 260px;
+}
+.rj-card::before {
+  content: ""; position: absolute; inset: 0; border-radius: inherit;
+  background: radial-gradient(60% 60% at 50% 50%, rgba(200,255,61,.08), transparent 70%);
+  opacity: 0; transition: opacity .5s var(--ease);
+}
+.rj-card:hover::before, .rj-card.is-active::before { opacity: 1; }
+.rj-card:hover, .rj-card.is-active {
+  border-color: rgba(200,255,61,.45);
+  transform: translateY(-4px);
+  box-shadow: 0 40px 80px -30px rgba(200,255,61,.25);
+}
+.rj-card.is-active {
+  background: var(--ink-1);
+}
+
+.rj-card-badge {
+  width: 80px; height: 80px; border-radius: 50%;
+  background: var(--ink-3); border: 1px solid var(--line-strong);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 36px; transition: transform .5s var(--ease);
+  position: relative; z-index: 1;
+}
+.rj-card:hover .rj-card-badge, .rj-card.is-active .rj-card-badge {
+  transform: scale(1.08);
+}
+
+.rj-card-label {
+  font-family: var(--font-display); font-weight: 800;
+  font-size: clamp(28px, 5vw, 42px); letter-spacing: -.03em;
+  text-transform: uppercase; color: var(--bone);
+  position: relative; z-index: 1;
+}
+.rj-card-sub {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: .2em;
+  color: var(--bone-3); text-transform: uppercase;
+  position: relative; z-index: 1; text-align: center;
+}
+.rj-card-check {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--volt); color: var(--ink-0);
+  display: flex; align-items: center; justify-content: center;
+  position: absolute; top: 16px; right: 16px;
+  transform: scale(0); transition: transform .4s var(--ease);
+  z-index: 2;
+}
+.rj-card.is-active .rj-card-check { transform: scale(1); }
+.rj-card-check i { width: 16px; height: 16px; stroke-width: 3; }
+
+/* Femme card accents */
+.rj-card-femme.is-active {
+  border-color: rgba(216,201,163,.45);
+  box-shadow: 0 40px 80px -30px rgba(216,201,163,.2);
+}
+.rj-card-femme::before {
+  background: radial-gradient(60% 60% at 50% 50%, rgba(216,201,163,.1), transparent 70%);
+}
+.rj-card-femme.is-active .rj-card-check { background: var(--champagne); }
+
+/* ── video player ── */
+.rj-player-wrap {
+  width: min(820px, calc(100% - 48px));
+  animation: rjPlayerIn .6s var(--ease);
+}
+@keyframes rjPlayerIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.rj-player {
+  background: var(--ink-1);
+  border: 1px solid var(--line-strong);
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.rj-player-head {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--line);
+  display: flex; align-items: center; gap: 14px;
+}
+.rj-player-badge {
+  font-size: 22px;
+}
+.rj-player-title {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 18px; letter-spacing: -.02em; color: var(--bone);
+}
+.rj-player-sub {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: .2em;
+  color: var(--bone-3); text-transform: uppercase; margin-top: 2px;
+}
+
+.rj-player-screen {
+  position: relative; aspect-ratio: 16/9; background: #000;
+}
+.rj-player-screen iframe,
+.rj-player-screen video {
+  width: 100%; height: 100%; display: block;
+}
+
+/* placeholder when no video */
+.rj-player-placeholder {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;
+  background:
+    radial-gradient(60% 50% at 30% 30%, rgba(200,255,61,.12), transparent 60%),
+    linear-gradient(180deg, #1a1d24, #05060A);
+}
+.rj-player-placeholder-icon {
+  width: 64px; height: 64px; border-radius: 50%;
+  background: rgba(200,255,61,.1); border: 1px solid rgba(200,255,61,.3);
+  display: flex; align-items: center; justify-content: center;
+}
+.rj-player-placeholder-icon i { width: 28px; height: 28px; color: var(--volt); }
+.rj-player-placeholder-t {
+  font-family: var(--font-mono); font-size: 12px; letter-spacing: .2em;
+  color: var(--bone-3); text-transform: uppercase;
+}
+
+.rj-player-foot {
+  padding: 20px 24px;
+  border-top: 1px solid var(--line);
+  display: flex; flex-direction: column; gap: 14px;
+}
+.rj-player-desc {
+  font-size: 14px; line-height: 1.6; color: var(--bone-2);
+}
+.rj-player-ctas {
+  display: flex; gap: 12px; flex-wrap: wrap;
+}
+@media (max-width: 480px) {
+  .rj-player-ctas { flex-direction: column; }
+  .rj-player-ctas .dt-btn { justify-content: center; }
+}
+
+/* ── loading spinner ── */
+.rj-spinner {
+  width: 36px; height: 36px; border: 2px solid var(--line-strong);
+  border-top-color: var(--volt); border-radius: 50%;
+  animation: rjSpin .8s linear infinite; margin: 48px auto;
+}
+@keyframes rjSpin { to { transform: rotate(360deg); } }
+
+/* ── no video config message ── */
+.rj-no-video {
+  padding: 32px; text-align: center;
+  font-family: var(--font-mono); font-size: 12px; letter-spacing: .14em;
+  color: var(--bone-3); text-transform: uppercase;
+}
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel" src="Hooks.jsx"></script>
+<script type="text/babel" src="JoinModal.jsx"></script>
+
+<script type="text/babel">
+const { useState, useEffect, useCallback } = React;
+
+/* ── Config ── */
+const API_URL = 'https://api.diettemple.tn/api';
+
+/* ── helpers ── */
+function isYouTube(url) {
+  return url && (url.includes('youtube.com') || url.includes('youtu.be'));
+}
+function isVimeo(url) {
+  return url && url.includes('vimeo.com');
+}
+function youtubeEmbedUrl(url) {
+  const m = url.match(/(?:v=|youtu\.be\/)([A-Za-z0-9_-]{11})/);
+  return m ? `https://www.youtube.com/embed/${m[1]}?autoplay=1&rel=0` : url;
+}
+function vimeoEmbedUrl(url) {
+  const m = url.match(/vimeo\.com\/(\d+)/);
+  return m ? `https://player.vimeo.com/video/${m[1]}?autoplay=1` : url;
+}
+
+/* ── VideoPlayer component ── */
+function VideoPlayer({ url }) {
+  if (!url) {
+    return (
+      <div className="rj-player-placeholder">
+        <div className="rj-player-placeholder-icon">
+          <i data-lucide="video-off"></i>
+        </div>
+        <div className="rj-player-placeholder-t">Vidéo à configurer</div>
+      </div>
+    );
+  }
+  if (isYouTube(url)) {
+    return <iframe src={youtubeEmbedUrl(url)} allow="autoplay; encrypted-media; picture-in-picture" allowFullScreen frameBorder="0" />;
+  }
+  if (isVimeo(url)) {
+    return <iframe src={vimeoEmbedUrl(url)} allow="autoplay; fullscreen" allowFullScreen frameBorder="0" />;
+  }
+  // Direct video file
+  return <video src={url} controls autoPlay playsInline style={{ objectFit: 'contain', background: '#000' }} />;
+}
+
+/* ── Main App ── */
+function RejoindrePage() {
+  const [videos, setVideos] = useState(null);      // { homme, femme } from API
+  const [loadingVideos, setLoadingVideos] = useState(true);
+  const [selected, setSelected] = useState(null);  // 'homme' | 'femme'
+  const [joinOpen, setJoinOpen] = useState(false);
+
+  /* fetch video configs from backend */
+  useEffect(() => {
+    fetch(`${API_URL}/landing/videos`)
+      .then(r => r.ok ? r.json() : null)
+      .catch(() => null)
+      .then(data => {
+        setVideos(data || { homme: null, femme: null });
+        setLoadingVideos(false);
+      });
+  }, []);
+
+  /* lucide icons */
+  useEffect(() => {
+    const t = setTimeout(() => window.lucide && lucide.createIcons(), 30);
+    return () => clearTimeout(t);
+  });
+
+  /* also re-init when modal changes */
+  useEffect(() => {
+    const t = setTimeout(() => window.lucide && lucide.createIcons(), 50);
+    return () => clearTimeout(t);
+  }, [joinOpen, selected]);
+
+  const selectGender = useCallback((g) => {
+    setSelected(prev => prev === g ? null : g);
+  }, []);
+
+  const genderMeta = {
+    homme: { emoji: '♂', label: 'Homme', sub: 'Programme masculin · force & muscle', descFallback: 'Découvrez le programme d\'entraînement et de nutrition conçu pour la transformation masculine.', cardClass: '' },
+    femme: { emoji: '♀', label: 'Femme', sub: 'Programme féminin · forme & vitalité', descFallback: 'Un programme pensé pour la femme moderne : minceur, tonus et énergie durable.', cardClass: 'rj-card-femme' },
+  };
+
+  const selectedConfig = selected && videos ? videos[selected] : null;
+  const selectedMeta = selected ? genderMeta[selected] : null;
+
+  return (
+    <>
+      {/* Top bar */}
+      <div className="rj-bar">
+        <div className="rj-bar-inner">
+          <button className="rj-back" onClick={() => window.history.length > 1 ? window.history.back() : (window.location.href = 'index.html')}>
+            <i data-lucide="arrow-left"></i> Retour
+          </button>
+          <a className="dt-brand" href="index.html">
+            <img src="../../assets/logo.webp" alt="DietTemple" />
+            <span>Diet<em>Temple</em></span>
+          </a>
+          <div className="rj-step">Étape 1 · Choisissez votre voie</div>
+        </div>
+      </div>
+
+      {/* Background glow */}
+      <div className="rj-bg" />
+
+      {/* Main */}
+      <main className="rj-main">
+        <div className="rj-eyebrow">
+          <span className="dt-pip" />
+          Ultimate Human Society · Bienvenue
+        </div>
+
+        <h1 className="rj-headline dt-reveal is-in">
+          Quelle est<br/>
+          votre <em>voie</em> ?
+        </h1>
+
+        <p className="rj-sub dt-reveal is-in">
+          Choisissez votre programme. Chaque voie est taillée sur mesure pour votre physiologie,
+          vos objectifs, et votre rythme de vie.
+        </p>
+
+        {/* Gender cards */}
+        <div className="rj-cards">
+          {['homme', 'femme'].map(g => {
+            const meta = genderMeta[g];
+            return (
+              <button
+                key={g}
+                className={`rj-card ${meta.cardClass} ${selected === g ? 'is-active' : ''}`}
+                onClick={() => selectGender(g)}
+              >
+                <div className="rj-card-check"><i data-lucide="check"></i></div>
+                <div className="rj-card-badge">{meta.emoji}</div>
+                <div className="rj-card-label">{meta.label}</div>
+                <div className="rj-card-sub">{meta.sub}</div>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Video player — appears when gender selected */}
+        {selected && (
+          <div className="rj-player-wrap">
+            <div className="rj-player">
+              <div className="rj-player-head">
+                <span className="rj-player-badge">{selectedMeta.emoji}</span>
+                <div>
+                  <div className="rj-player-title">
+                    {selectedConfig?.title || `Programme ${selectedMeta.label}`}
+                  </div>
+                  <div className="rj-player-sub">Votre voie · DietTemple</div>
+                </div>
+              </div>
+
+              <div className="rj-player-screen">
+                {loadingVideos ? (
+                  <div className="rj-player-placeholder">
+                    <div className="rj-spinner" style={{ margin: 0 }} />
+                  </div>
+                ) : (
+                  <VideoPlayer url={selectedConfig?.videoUrl || ''} />
+                )}
+              </div>
+
+              <div className="rj-player-foot">
+                <p className="rj-player-desc">
+                  {selectedConfig?.description || selectedMeta.descFallback}
+                </p>
+                <div className="rj-player-ctas">
+                  <a className="dt-btn dt-btn-ghost" href="tel:+21671000000">
+                    <i data-lucide="phone"></i> Appeler
+                  </a>
+                  <button className="dt-btn dt-btn-primary dt-btn-lg" onClick={() => setJoinOpen(true)}>
+                    Commencer mon parcours <i data-lucide="arrow-up-right"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Loading state before gender selected */}
+        {!selected && (
+          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', letterSpacing: '.2em', color: 'var(--bone-3)', textTransform: 'uppercase', marginTop: '8px' }}>
+            ↑ Sélectionnez votre programme pour continuer
+          </div>
+        )}
+      </main>
+
+      {/* Registration modal */}
+      <JoinModal open={joinOpen} onClose={() => setJoinOpen(false)} prefill={selected === 'femme' ? 'fondation' : 'ascension'} />
+    </>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<RejoindrePage />);
+</script>
+</body>
+</html>

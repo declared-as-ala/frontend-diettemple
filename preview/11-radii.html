@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Radii & Borders</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body{margin:0;background:var(--ink-1);height:100%;color:var(--bone)}
+  .wrap{padding:22px 24px;height:100%;box-sizing:border-box;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;align-items:center}
+  .demo{position:relative;background:var(--ink-2);border:1px solid var(--line);height:120px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px}
+  .demo.input{border-radius:10px}
+  .demo.card{border-radius:14px}
+  .demo.panel{border-radius:20px}
+  .demo.pill{border-radius:999px}
+  .tok{font-family:var(--font-mono);font-size:10px;letter-spacing:.16em;color:var(--bone-3);text-transform:uppercase}
+  .val{font-family:var(--font-display);font-weight:700;font-size:18px;color:var(--bone)}
+  .demo.pill .val{font-size:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="demo input"><div class="val">10px</div><div class="tok">input</div></div>
+  <div class="demo card"><div class="val">14px</div><div class="tok">card</div></div>
+  <div class="demo panel"><div class="val">20px</div><div class="tok">panel</div></div>
+  <div class="demo pill" style="height:48px;width:160px;justify-self:center"><div class="val">∞</div><div class="tok">pill · button</div></div>
+</div>
+</body>
+</html>

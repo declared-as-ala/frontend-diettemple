@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Type Scale</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body{margin:0;background:var(--ink-1);height:100%;color:var(--bone);font-family:var(--font-display)}
+  .wrap{padding:18px 28px;display:flex;flex-direction:column;gap:6px;height:100%;box-sizing:border-box;justify-content:center}
+  .row{display:grid;grid-template-columns:80px 1fr 130px;align-items:baseline;gap:18px;border-bottom:1px solid var(--line);padding:6px 0}
+  .row:last-child{border-bottom:none}
+  .tok{font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;color:var(--bone-3);text-transform:uppercase}
+  .smp{letter-spacing:-.02em;font-weight:700;line-height:1}
+  .meta{font-family:var(--font-mono);font-size:10px;color:var(--bone-3);text-align:right}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="row"><div class="tok">hero</div><div class="smp" style="font-size:46px;font-weight:800;letter-spacing:-.04em">Ultimate Human</div><div class="meta">clamp(48,9vw,144)</div></div>
+  <div class="row"><div class="tok">display</div><div class="smp" style="font-size:30px">A transformation</div><div class="meta">clamp(40,5vw,80)</div></div>
+  <div class="row"><div class="tok">h1</div><div class="smp" style="font-size:22px">Ranks of the Temple</div><div class="meta">56 / 1.05</div></div>
+  <div class="row"><div class="tok">h2</div><div class="smp" style="font-size:18px;font-weight:600">Scan. Read. Adjust.</div><div class="meta">36 / 1.15</div></div>
+  <div class="row"><div class="tok">body</div><div style="font-family:var(--font-body);font-size:14px;color:var(--bone-2)">The protocol is updated weekly.</div><div class="meta">16 / 1.6</div></div>
+  <div class="row"><div class="tok">eyebrow</div><div style="font-family:var(--font-body);font-weight:500;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--bone-3)">— The System</div><div class="meta">12 / .18em</div></div>
+</div>
+</body>
+</html>

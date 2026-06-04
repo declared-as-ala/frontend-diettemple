@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Champagne / Member accent</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body{margin:0;background:var(--ink-1);height:100%;font-family:var(--font-body)}
+  .wrap{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;height:100%;gap:1px;background:var(--line)}
+  .hero{background:var(--ink-0);padding:22px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+  .hero .tag{font-family:var(--font-mono);font-size:10px;letter-spacing:.2em;color:var(--bone-3);text-transform:uppercase}
+  .hero .seal{width:62px;height:62px;border-radius:50%;border:1px solid var(--champagne);display:flex;align-items:center;justify-content:center;color:var(--champagne);font-family:var(--font-display);font-weight:700;font-size:12px;letter-spacing:.18em;box-shadow:0 0 40px -8px rgba(216,201,163,.4)}
+  .hero .title{font-family:var(--font-editorial);font-style:italic;font-weight:300;font-size:34px;color:var(--champagne);line-height:1}
+  .hero .sub{font-family:var(--font-mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--bone-3)}
+  .sw{position:relative;padding:14px;display:flex;flex-direction:column;justify-content:space-between}
+  .sw .name{font-family:var(--font-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase}
+  .sw .hex{font-family:var(--font-mono);font-size:10px}
+  .light .name,.light .hex{color:var(--ink-0)} .dark .name,.dark .hex{color:var(--bone)}
+  .meta{font-family:var(--font-mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;opacity:.55}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hero">
+    <div style="display:flex;align-items:center;gap:14px"><div class="seal">UH</div><div><div class="title">Member.</div><div class="sub" style="margin-top:4px">Champagne · luxury accent</div></div></div>
+    <div class="tag">Used only for rank, seal, member pricing</div>
+  </div>
+  <div class="sw light" style="background:#D8C9A3"><span class="meta">champagne</span><span class="hex">#D8C9A3</span><span class="name">Champagne</span></div>
+  <div class="sw light" style="background:#B89F6B"><span class="meta">champagne-deep</span><span class="hex">#B89F6B</span><span class="name">Deep</span></div>
+  <div class="sw dark" style="background:#7A6541"><span class="meta">bronze</span><span class="hex">#7A6541</span><span class="name">Bronze</span></div>
+</div>
+</body>
+</html>

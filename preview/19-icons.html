@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Iconography</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+  html,body{margin:0;background:var(--ink-1);height:100%;color:var(--bone);font-family:var(--font-body)}
+  .wrap{padding:20px 24px;height:100%;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;gap:16px}
+  .lbl{font-family:var(--font-mono);font-size:10px;letter-spacing:.18em;color:var(--bone-3);text-transform:uppercase}
+  .grid{display:grid;grid-template-columns:repeat(10,1fr);gap:10px}
+  .cell{aspect-ratio:1;background:var(--ink-2);border:1px solid var(--line);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--bone)}
+  .cell svg{width:20px;height:20px;stroke-width:1.5}
+  .legend{display:flex;gap:18px;align-items:center;font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;color:var(--bone-3);text-transform:uppercase}
+  .legend b{color:var(--bone)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div style="display:flex;justify-content:space-between;align-items:baseline">
+    <div class="lbl">— Lucide · 1.5px · 24 grid</div>
+    <div class="legend"><span><b>20px</b> · default ui</span><span>via cdn</span></div>
+  </div>
+  <div class="grid">
+    <div class="cell"><i data-lucide="flame"></i></div>
+    <div class="cell"><i data-lucide="dumbbell"></i></div>
+    <div class="cell"><i data-lucide="utensils"></i></div>
+    <div class="cell"><i data-lucide="scan-line"></i></div>
+    <div class="cell"><i data-lucide="line-chart"></i></div>
+    <div class="cell"><i data-lucide="shield"></i></div>
+    <div class="cell"><i data-lucide="heart-pulse"></i></div>
+    <div class="cell"><i data-lucide="moon"></i></div>
+    <div class="cell"><i data-lucide="user-round"></i></div>
+    <div class="cell"><i data-lucide="lock"></i></div>
+    <div class="cell"><i data-lucide="play"></i></div>
+    <div class="cell"><i data-lucide="pause"></i></div>
+    <div class="cell"><i data-lucide="chevron-right"></i></div>
+    <div class="cell"><i data-lucide="arrow-up-right"></i></div>
+    <div class="cell"><i data-lucide="circle-dot"></i></div>
+    <div class="cell"><i data-lucide="calendar"></i></div>
+    <div class="cell"><i data-lucide="bell"></i></div>
+    <div class="cell"><i data-lucide="settings-2"></i></div>
+    <div class="cell"><i data-lucide="camera"></i></div>
+    <div class="cell"><i data-lucide="zap"></i></div>
+  </div>
+</div>
+<script>lucide.createIcons()</script>
+</body>
+</html>

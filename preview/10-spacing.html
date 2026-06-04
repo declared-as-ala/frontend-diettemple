@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Spacing</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body{margin:0;background:var(--ink-1);height:100%;color:var(--bone)}
+  .wrap{padding:24px 28px;height:100%;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;gap:10px}
+  .row{display:grid;grid-template-columns:80px 1fr 80px;align-items:center;gap:14px}
+  .tok{font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;color:var(--bone-3);text-transform:uppercase}
+  .bar{height:8px;background:var(--volt);border-radius:2px;box-shadow:0 0 12px -2px var(--volt-glow)}
+  .val{font-family:var(--font-mono);font-size:10px;color:var(--bone-3);text-align:right}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="row"><div class="tok">s-2</div><div><div class="bar" style="width:8px"></div></div><div class="val">8px</div></div>
+  <div class="row"><div class="tok">s-3</div><div><div class="bar" style="width:12px"></div></div><div class="val">12px</div></div>
+  <div class="row"><div class="tok">s-4</div><div><div class="bar" style="width:16px"></div></div><div class="val">16px</div></div>
+  <div class="row"><div class="tok">s-5</div><div><div class="bar" style="width:24px"></div></div><div class="val">24px</div></div>
+  <div class="row"><div class="tok">s-6</div><div><div class="bar" style="width:32px"></div></div><div class="val">32px</div></div>
+  <div class="row"><div class="tok">s-7</div><div><div class="bar" style="width:48px"></div></div><div class="val">48px</div></div>
+  <div class="row"><div class="tok">s-8</div><div><div class="bar" style="width:64px"></div></div><div class="val">64px</div></div>
+  <div class="row"><div class="tok">s-9</div><div><div class="bar" style="width:96px"></div></div><div class="val">96px · §mobile</div></div>
+  <div class="row"><div class="tok">s-10</div><div><div class="bar" style="width:160px"></div></div><div class="val">160px · §desktop</div></div>
+</div>
+</body>
+</html>

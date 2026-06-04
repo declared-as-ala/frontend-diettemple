@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Badges & Chips</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body{margin:0;background:var(--ink-1);height:100%;color:var(--bone);font-family:var(--font-body)}
+  .wrap{padding:24px;height:100%;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;gap:16px}
+  .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .lbl{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.18em;color:var(--bone-3);text-transform:uppercase;min-width:90px}
+  .chip{height:28px;padding:0 12px;border-radius:999px;display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--line);background:var(--ink-2);color:var(--bone-2)}
+  .chip .dot{width:6px;height:6px;border-radius:50%;background:var(--volt);box-shadow:0 0 8px var(--volt-glow)}
+  .chip.volt{border-color:rgba(200,255,61,.45);color:var(--volt);background:rgba(200,255,61,.06)}
+  .chip.champ{border-color:rgba(216,201,163,.35);color:var(--champagne);background:transparent}
+  .chip.lock{color:var(--bone-3)}
+  .chip.lock .dot{background:var(--bone-3);box-shadow:none}
+  .rank{height:28px;padding:0 12px;border-radius:6px;display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;background:var(--ink-2);border:1px solid var(--line)}
+  .rank .num{color:var(--bone-3)}
+  .rank .nm{color:var(--bone)}
+  .rank.active .nm{color:var(--volt)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="row"><div class="lbl">status</div>
+    <span class="chip"><span class="dot"></span>Active</span>
+    <span class="chip volt"><span class="dot"></span>Live now</span>
+    <span class="chip lock"><span class="dot"></span>Locked</span>
+    <span class="chip champ">UH Member</span>
+  </div>
+  <div class="row"><div class="lbl">ranks</div>
+    <span class="rank"><span class="num">01</span><span class="nm">Initiate</span></span>
+    <span class="rank"><span class="num">02</span><span class="nm">Fighter</span></span>
+    <span class="rank active"><span class="num">03</span><span class="nm">Warrior</span></span>
+    <span class="rank"><span class="num">04</span><span class="nm">Elite</span></span>
+  </div>
+  <div class="row"><div class="lbl">tags</div>
+    <span class="chip">Nutrition</span>
+    <span class="chip">Strength</span>
+    <span class="chip">Recovery</span>
+    <span class="chip">Mindset</span>
+  </div>
+</div>
+</body>
+</html>

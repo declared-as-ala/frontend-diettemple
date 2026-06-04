@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Cards</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body{margin:0;background:var(--ink-1);height:100%;color:var(--bone)}
+  .wrap{padding:20px;height:100%;box-sizing:border-box;display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;align-items:center}
+  .card{background:var(--ink-2);border:1px solid var(--line);border-radius:14px;padding:18px;height:220px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+  .eyebrow{font-family:var(--font-mono);font-size:10px;letter-spacing:.18em;color:var(--bone-3);text-transform:uppercase}
+  .title{font-family:var(--font-display);font-weight:700;font-size:22px;letter-spacing:-.015em;margin:0}
+  .meta{display:flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;color:var(--bone-3);text-transform:uppercase}
+  .meta .dot{width:5px;height:5px;border-radius:50%;background:var(--volt)}
+  .card.feature{border-color:rgba(200,255,61,.4);box-shadow:0 0 60px -10px var(--volt-glow)}
+  .card.feature::after{content:"";position:absolute;width:140px;height:140px;right:-40px;top:-40px;background:radial-gradient(circle,var(--volt-glow) 0,transparent 70%)}
+  .price{font-family:var(--font-mono);font-size:13px;letter-spacing:.04em}
+  .price s{color:var(--bone-4);text-decoration-color:var(--bone-3);margin-right:8px}
+  .price .v{color:var(--volt);font-weight:600}
+  .card .num{font-family:var(--font-display);font-weight:800;font-size:48px;color:var(--volt);line-height:1;letter-spacing:-.04em}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="card">
+    <div class="eyebrow">— Module 03</div>
+    <h3 class="title">Body analysis &<br>weekly review.</h3>
+    <div class="meta"><span class="dot"></span>Coach · 45 min</div>
+  </div>
+  <div class="card feature" style="z-index:1">
+    <div class="eyebrow" style="color:var(--volt)">— Featured</div>
+    <div class="num">−14.2%</div>
+    <div class="title" style="font-size:18px">Body fat in 90 days.</div>
+    <div class="meta"><span class="dot"></span>Tier 03 · Warrior</div>
+  </div>
+  <div class="card">
+    <div class="eyebrow">— Product</div>
+    <h3 class="title">Whey Protocol<br><span style="font-weight:300;color:var(--bone-2)">Vanilla · 1kg</span></h3>
+    <div class="price"><s>€59</s><span class="v">€42 · UH</span></div>
+  </div>
+</div>
+</body>
+</html>

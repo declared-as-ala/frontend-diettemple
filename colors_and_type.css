@@ -1,0 +1,240 @@
+/* ============================================================
+   DietTemple — Design Tokens
+   Import this once at the top of any HTML file.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Fraunces:ital,opsz,wght@1,144,300;1,144,400&display=swap');
+
+:root {
+  /* ---------- Color: Ink (backgrounds, neutrals) ---------- */
+  --ink-0: #05060A;       /* Obsidian — hero void */
+  --ink-1: #0B0D12;       /* Onyx — page bg */
+  --ink-2: #13161E;       /* Graphite — card surface */
+  --ink-3: #1C2029;       /* Slate — elevated card / input */
+  --ink-4: #262B36;       /* Hover surface */
+
+  --line: rgba(255, 255, 255, 0.08);
+  --line-strong: rgba(255, 255, 255, 0.14);
+  --line-volt: rgba(200, 255, 61, 0.5);
+
+  /* ---------- Color: Bone (text on dark) ---------- */
+  --bone:   #F4F2EC;      /* Primary */
+  --bone-2: #B8B5AB;      /* Secondary */
+  --bone-3: #6E6B62;      /* Tertiary / caption */
+  --bone-4: #3F3D38;      /* Disabled */
+
+  /* ---------- Color: Volt (brand accent — refined logo color) ---------- */
+  --volt:        #C8FF3D;
+  --volt-deep:   #A0C800;
+  --volt-darker: #6E8A00;
+  --volt-glow:   rgba(200, 255, 61, 0.45);
+  --volt-glow-soft: rgba(200, 255, 61, 0.16);
+
+  /* ---------- Color: Champagne (luxury / rank / member) ---------- */
+  --champagne: #D8C9A3;
+  --champagne-deep: #B89F6B;
+  --bronze: #7A6541;
+
+  /* ---------- Color: Semantic ---------- */
+  --blood:   #FF4D4D;     /* Destructive — almost never used */
+  --signal-positive: #C8FF3D;
+  --signal-warning:  #FFB547;
+
+  /* ---------- Typography: families ---------- */
+  --font-display: 'Manrope', system-ui, -apple-system, sans-serif;
+  --font-body:    'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+  --font-editorial: 'Fraunces', Georgia, serif;
+
+  /* ---------- Typography: scale (fluid) ---------- */
+  --t-hero:    clamp(48px, 9vw, 144px);
+  --t-display: clamp(40px, 5vw, 80px);
+  --t-h1: 56px;
+  --t-h2: 36px;
+  --t-h3: 22px;
+  --t-h4: 18px;
+  --t-body: 16px;
+  --t-small: 14px;
+  --t-micro: 12px;
+  --t-eyebrow: 12px;
+  --t-data: 14px;
+
+  /* ---------- Typography: line-heights ---------- */
+  --lh-tight: 0.95;
+  --lh-display: 1.05;
+  --lh-heading: 1.15;
+  --lh-body: 1.6;
+  --lh-ui: 1.4;
+
+  /* ---------- Typography: tracking ---------- */
+  --track-hero:    -0.04em;
+  --track-display: -0.025em;
+  --track-heading: -0.015em;
+  --track-body:    0em;
+  --track-eyebrow: 0.18em;
+  --track-data:    0.04em;
+
+  /* ---------- Spacing (8pt) ---------- */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+  --s-8: 64px;
+  --s-9: 96px;
+  --s-10: 160px;
+  --s-11: 240px;
+
+  /* ---------- Radii ---------- */
+  --r-input: 10px;
+  --r-card: 14px;
+  --r-panel: 20px;
+  --r-pill: 999px;
+
+  /* ---------- Borders ---------- */
+  --b-thin: 1px solid var(--line);
+  --b-strong: 1px solid var(--line-strong);
+  --b-volt: 1px solid var(--line-volt);
+
+  /* ---------- Shadows / Glow ---------- */
+  --inset-hi: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  --shadow-card: 0 1px 0 rgba(255,255,255,0.03), inset 0 1px 0 rgba(255,255,255,0.04);
+  --shadow-elevated: 0 30px 80px -30px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.06);
+  --glow-volt: 0 0 0 4px var(--volt-glow-soft);
+  --glow-volt-strong: 0 0 60px -10px var(--volt-glow);
+  --glow-champagne: 0 0 60px -10px rgba(216,201,163,0.35);
+
+  /* ---------- Motion ---------- */
+  --ease: cubic-bezier(0.2, 0.7, 0.1, 1);
+  --dur-micro: 240ms;
+  --dur-base: 480ms;
+  --dur-slow: 760ms;
+
+  /* ---------- Layout ---------- */
+  --max-w: 1280px;
+  --gutter: 24px;
+  --gutter-lg: 64px;
+  --nav-h: 72px;
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
+
+html, body {
+  background: var(--ink-1);
+  color: var(--bone);
+  font-family: var(--font-body);
+  font-size: var(--t-body);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ============================================================
+   Semantic typography classes
+   Use these in markup OR copy the rules onto h1/h2/p directly.
+   ============================================================ */
+
+.dt-hero {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--t-hero);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--track-hero);
+  text-transform: uppercase;
+  color: var(--bone);
+}
+
+.dt-display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--t-display);
+  line-height: var(--lh-display);
+  letter-spacing: var(--track-display);
+  color: var(--bone);
+}
+
+.dt-h1 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--t-h1);
+  line-height: var(--lh-display);
+  letter-spacing: var(--track-display);
+  color: var(--bone);
+}
+
+.dt-h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--t-h2);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--track-heading);
+  color: var(--bone);
+}
+
+.dt-h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--t-h3);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--track-heading);
+  color: var(--bone);
+}
+
+.dt-body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--t-body);
+  line-height: var(--lh-body);
+  color: var(--bone-2);
+}
+
+.dt-small {
+  font-family: var(--font-body);
+  font-size: var(--t-small);
+  line-height: var(--lh-ui);
+  color: var(--bone-2);
+}
+
+.dt-eyebrow {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: var(--t-eyebrow);
+  line-height: 1;
+  letter-spacing: var(--track-eyebrow);
+  text-transform: uppercase;
+  color: var(--bone-3);
+}
+
+.dt-eyebrow-volt { color: var(--volt); }
+
+.dt-data {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: var(--t-data);
+  letter-spacing: var(--track-data);
+  color: var(--bone);
+  font-feature-settings: "tnum" 1, "zero" 1;
+}
+
+.dt-editorial {
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(28px, 3.5vw, 56px);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--bone);
+}
+
+/* ============================================================
+   Atom: hairline section divider
+   ============================================================ */
+.dt-hairline {
+  height: 1px;
+  background: var(--line);
+  width: 100%;
+}
