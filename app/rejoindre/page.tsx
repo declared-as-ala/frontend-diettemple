@@ -1,113 +1,11 @@
 'use client';
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft, ArrowUpRight, Phone, Check } from 'lucide-react';
-import { API_URL } from '@/lib/config';
-import JoinModal from '@/components/JoinModal';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 
-/* ── Types ─────────────────────────────────────────────────────────────────── */
-type Gender = 'homme' | 'femme';
-interface VideoConfig { title: string; description: string; videoUrl: string; }
-interface Videos { homme: VideoConfig | null; femme: VideoConfig | null; }
-
-/* ── API host (without /api suffix) ─────────────────────────────────────────── */
-const API_HOST = API_URL.replace(/\/api\/?$/, ''); // https://api.diettemple.tn
-
-/* ── Helpers ────────────────────────────────────────────────────────────────── */
-function isYouTube(url: string) {
-  return url.includes('youtube.com') || url.includes('youtu.be');
-}
-function isVimeo(url: string) {
-  return url.includes('vimeo.com');
-}
-function youtubeEmbed(url: string) {
-  const m = url.match(/(?:v=|youtu\.be\/)([A-Za-z0-9_-]{11})/);
-  return m ? `https://www.youtube.com/embed/${m[1]}?autoplay=1&rel=0` : url;
-}
-function vimeoEmbed(url: string) {
-  const m = url.match(/vimeo\.com\/(\d+)/);
-  return m ? `https://player.vimeo.com/video/${m[1]}?autoplay=1` : url;
-}
-
-/**
- * Resolve a video URL.
- * - Absolute URLs (http/https) → returned as-is (YouTube, Vimeo, external)
- * - Relative URLs (/videos/...) → prepend API_HOST so the browser fetches
- *   from api.diettemple.tn, not diettemple.tn
- */
-function resolveUrl(url: string): string {
-  if (!url) return '';
-  if (url.startsWith('http://') || url.startsWith('https://')) return url;
-  return `${API_HOST}${url.startsWith('/') ? '' : '/'}${url}`;
-}
-
-/* ── Video player ───────────────────────────────────────────────────────────── */
-function VideoPlayer({ url }: { url: string }) {
-  const resolved = resolveUrl(url); // always absolute URL
-  if (!resolved) return (
-    <div className="rj-placeholder">
-      <div className="rj-placeholder-icon">🎬</div>
-      <p>Vidéo à configurer</p>
-    </div>
-  );
-  if (isYouTube(resolved)) return (
-    <iframe
-      src={youtubeEmbed(resolved)}
-      className="rj-iframe"
-      allow="autoplay; encrypted-media; picture-in-picture"
-      allowFullScreen
-    />
-  );
-  if (isVimeo(resolved)) return (
-    <iframe
-      src={vimeoEmbed(resolved)}
-      className="rj-iframe"
-      allow="autoplay; fullscreen"
-      allowFullScreen
-    />
-  );
-  return <video src={resolved} controls autoPlay playsInline className="rj-video" />;
-}
-
-/* ── Main page ──────────────────────────────────────────────────────────────── */
 export default function RejoindrePage() {
-  const [videos,    setVideos]    = useState<Videos>({ homme: null, femme: null });
-  const [loading,   setLoading]   = useState(true);
-  const [selected,  setSelected]  = useState<Gender | null>(null);
-  const [joinOpen,  setJoinOpen]  = useState(false);
-
-  /* fetch video config */
-  useEffect(() => {
-    fetch(`${API_HOST}/api/landing/videos`)
-      .then(r => r.ok ? r.json() : null)
-      .catch(() => null)
-      .then(data => {
-        if (data) setVideos(data);
-        setLoading(false);
-      });
-  }, []);
-
-  const cfg = selected ? videos[selected] : null;
-
-  const genderMeta: Record<Gender, { emoji: string; label: string; sub: string; desc: string }> = {
-    homme: {
-      emoji: '♂',
-      label: 'Homme',
-      sub: 'Force & Muscle',
-      desc: 'Programme conçu pour la transformation masculine : prise de masse, force et nutrition optimisées.',
-    },
-    femme: {
-      emoji: '♀',
-      label: 'Femme',
-      sub: 'Forme & Vitalité',
-      desc: 'Un programme pensé pour la femme moderne : silhouette, tonus et énergie durable.',
-    },
-  };
-
   return (
     <>
-      {/* ── Top bar ──────────────────────────────────────────────────────── */}
+      {/* Top bar */}
       <div className="rj-bar">
         <div className="rj-bar-inner">
           <Link href="/" className="rj-back">
@@ -120,9 +18,7 @@ export default function RejoindrePage() {
         </div>
       </div>
 
-      {/* ── Main ─────────────────────────────────────────────────────────── */}
       <main className="rj-main">
-        {/* Ambient glow */}
         <div className="rj-bg" aria-hidden="true" />
 
         <div className="rj-eyebrow">
@@ -140,77 +36,25 @@ export default function RejoindrePage() {
           pour votre physiologie et vos objectifs.
         </p>
 
-        {/* ── Gender cards ─────────────────────────────────────────────── */}
+        {/* Gender choice cards — each navigates to its own page */}
         <div className="rj-cards">
-          {(['homme', 'femme'] as Gender[]).map(g => (
-            <button
-              key={g}
-              className={`rj-card rj-card-${g}${selected === g ? ' is-active' : ''}`}
-              onClick={() => setSelected(prev => prev === g ? null : g)}
-            >
-              {selected === g && (
-                <div className="rj-card-check"><Check size={16} strokeWidth={3} /></div>
-              )}
-              <div className="rj-card-badge">{genderMeta[g].emoji}</div>
-              <div className="rj-card-label">{genderMeta[g].label}</div>
-              <div className="rj-card-sub">{genderMeta[g].sub}</div>
-            </button>
-          ))}
+
+          <Link href="/rejoindre/homme" className="rj-card rj-card-homme rj-card-link">
+            <div className="rj-card-badge">♂</div>
+            <div className="rj-card-label">Homme</div>
+            <div className="rj-card-sub">Force &amp; Muscle</div>
+            <div className="rj-card-arrow"><ArrowRight size={20} /></div>
+          </Link>
+
+          <Link href="/rejoindre/femme" className="rj-card rj-card-femme rj-card-link">
+            <div className="rj-card-badge">♀</div>
+            <div className="rj-card-label">Femme</div>
+            <div className="rj-card-sub">Forme &amp; Vitalité</div>
+            <div className="rj-card-arrow"><ArrowRight size={20} /></div>
+          </Link>
+
         </div>
-
-        {/* ── Video player ─────────────────────────────────────────────── */}
-        {selected && (
-          <div className="rj-player-wrap">
-            <div className="rj-player">
-              <div className="rj-player-head">
-                <span className="rj-player-badge">{genderMeta[selected].emoji}</span>
-                <div>
-                  <div className="rj-player-title">
-                    {cfg?.title || `Programme ${genderMeta[selected].label}`}
-                  </div>
-                  <div className="rj-player-sub-label">Votre voie · DietTemple</div>
-                </div>
-              </div>
-
-              <div className="rj-player-screen">
-                {loading ? (
-                  <div className="rj-placeholder"><div className="rj-spinner" /></div>
-                ) : (
-                  <VideoPlayer url={cfg?.videoUrl || ''} />
-                )}
-              </div>
-
-              <div className="rj-player-foot">
-                <p className="rj-player-desc">
-                  {cfg?.description || genderMeta[selected].desc}
-                </p>
-                <div className="rj-player-ctas">
-                  <a className="dt-btn dt-btn-ghost" href="tel:+21671000000">
-                    <Phone size={14} /> Appeler
-                  </a>
-                  <button
-                    className="dt-btn dt-btn-primary dt-btn-lg"
-                    onClick={() => setJoinOpen(true)}
-                  >
-                    Commencer mon parcours <ArrowUpRight size={16} />
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {!selected && (
-          <p className="rj-hint">↑ Sélectionnez votre programme pour continuer</p>
-        )}
       </main>
-
-      {/* Registration modal */}
-      <JoinModal
-        open={joinOpen}
-        onClose={() => setJoinOpen(false)}
-        prefill={selected === 'femme' ? 'fondation' : 'ascension'}
-      />
     </>
   );
 }

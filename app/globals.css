@@ -1792,6 +1792,37 @@ img { max-width: 100%; }
   color: var(--bone-3); text-transform: uppercase; margin-top: 8px;
 }
 
+/* Cards as links (navigable) */
+.rj-card-link {
+  text-decoration: none;
+  display: flex; /* override <a> default */
+}
+.rj-card-arrow {
+  position: absolute; bottom: 20px; right: 20px;
+  color: var(--bone-3);
+  transition: color var(--dur-micro) var(--ease), transform var(--dur-micro) var(--ease);
+  z-index: 1;
+}
+.rj-card:hover .rj-card-arrow { color: var(--volt); transform: translateX(4px); }
+.rj-card-femme:hover .rj-card-arrow { color: var(--champagne); }
+
+/* Gender badge on video page */
+.rj-main-video { padding-top: 104px; }
+.rj-gender-badge {
+  display: flex; align-items: center; gap: 16px;
+  margin-bottom: 32px;
+}
+.rj-gender-emoji { font-size: 48px; line-height: 1; }
+.rj-gender-label {
+  font-family: var(--font-display); font-weight: 800;
+  font-size: clamp(28px, 5vw, 48px); letter-spacing: -.04em;
+  text-transform: uppercase; color: var(--bone); line-height: 1;
+}
+.rj-gender-sub {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: .2em;
+  color: var(--bone-3); text-transform: uppercase; margin-top: 4px;
+}
+
 /* ============================================================
    FULL HOME PAGE RESPONSIVE — mobile polish
    Fixes every remaining non-responsive element below 640 px.
