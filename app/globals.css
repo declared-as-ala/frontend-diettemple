@@ -1791,3 +1791,118 @@ img { max-width: 100%; }
   font-family: var(--font-mono); font-size: 11px; letter-spacing: .18em;
   color: var(--bone-3); text-transform: uppercase; margin-top: 8px;
 }
+
+/* ============================================================
+   FULL HOME PAGE RESPONSIVE — mobile polish
+   Fixes every remaining non-responsive element below 640 px.
+   ============================================================ */
+
+/* ── Nav GPU layer — ensures navbar never renders under page content ── */
+.dt-nav { will-change: transform; transform: translateZ(0); }
+main { position: relative; z-index: 0; isolation: isolate; }
+
+/* ── Section headings ──────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .dt-sec-title { font-size: clamp(30px, 8vw, 48px); }
+  .dt-sec-kicker { font-size: 15px; }
+}
+
+/* ── Hero ──────────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .dt-hero-section { padding-top: 100px; padding-bottom: 80px; }
+  .dt-hero-content  { padding-top: 32px; }
+  .dt-hero-headline { font-size: clamp(48px, 13vw, 96px); }
+  .dt-hero-sub      { font-size: 15px; }
+  .dt-hero-ctas     { flex-direction: column; margin-bottom: 48px; }
+  .dt-hero-ctas .dt-btn { justify-content: center; width: 100%; }
+  .dt-hero-stats    { gap: 16px 24px; }
+}
+@media (max-height: 680px) {
+  .dt-hero-scrollhint { display: none; }
+}
+
+/* ── Movement ──────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .dt-movement-figure { max-width: 100%; }
+  .dt-movement-pillars { gap: 24px 20px; }
+  .dt-editorial { font-size: clamp(24px, 6vw, 36px); }
+}
+
+/* ── System ────────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  /* Reduce the tall vertical connector line on mobile */
+  .dt-system-line { min-height: 48px; }
+  .dt-system-step { gap: 10px; padding-bottom: 16px; }
+  .dt-system-card { padding: 16px; }
+}
+
+/* ── Ranks ─────────────────────────────────────────────────────────── */
+@media (max-width: 420px) {
+  /* Badge scales down so it doesn't overflow narrow cards */
+  .dt-rank-badge-wrap { width: 110px; height: 110px; }
+  .dt-rank { padding: 20px 16px; }
+}
+
+/* ── AppShowcase ───────────────────────────────────────────────────── */
+/* Phone frame: responsive width so it never overflows on small screens */
+@media (max-width: 640px) {
+  .dt-phone { width: clamp(200px, 60vw, 260px); }
+  .dt-app-dots button { font-size: 9px; padding: 6px 8px; }
+  .dt-app-features-v2 { margin-top: 24px; gap: 12px; }
+}
+
+/* ── Coaching ──────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .dt-coaching-ctas { flex-direction: column; }
+  .dt-coaching-ctas .dt-btn { justify-content: center; }
+  .dt-coaching-list li { gap: 10px; }
+}
+
+/* ── Products ──────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .dt-products-head { flex-direction: column; align-items: flex-start; }
+  .dt-products-cta  { flex-direction: column; align-items: flex-start; gap: 16px; }
+}
+
+/* ── Society ───────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .dt-soc-stat-n   { font-size: clamp(28px, 7vw, 44px); }
+  .dt-society-stats { gap: 16px 12px; }
+  .dt-testimonial  { padding: 20px; min-height: auto; }
+  .dt-test-q       { font-size: 18px; }
+}
+
+/* ── Final CTA ─────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .dt-final        { padding: 48px 0 110px; } /* extra bottom = sticky CTA clearance */
+  .dt-final-stage  { padding: 48px 24px 48px; border-radius: 20px; }
+  .dt-final-headline { font-size: clamp(48px, 12vw, 96px); }
+  .dt-final-ctas   { flex-direction: column; align-items: center; }
+  .dt-final-ctas .dt-btn { width: 100%; max-width: 360px; justify-content: center; }
+  .dt-final-meta   { gap: 16px; flex-direction: column; align-items: center; }
+  .dt-final-sub    { font-size: 15px; margin-bottom: 32px; }
+}
+
+/* ── Footer ────────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .dt-footer        { padding-bottom: 96px; } /* clears sticky CTA */
+  .dt-footer-top    { gap: 32px; }
+  .dt-footer-cols   { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .dt-footer-bot    { flex-direction: column; gap: 10px; }
+  .dt-footer-bot-r  { gap: 12px; }
+}
+
+/* ── Subscription cards ────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .dt-sub-card      { padding: 24px 18px; }
+  .dt-sub-price-n   { font-size: 44px; }
+}
+
+/* ── Modal ─────────────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .dt-modal-stage   { padding: 28px 16px 20px; }
+  .dt-modal-grid    { grid-template-columns: 1fr; }
+  .dt-modal-title   { font-size: 26px; }
+  .dt-modal-actions { flex-direction: column; }
+  .dt-modal-actions .dt-btn { width: 100%; justify-content: center; }
+}
