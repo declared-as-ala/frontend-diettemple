@@ -77,8 +77,10 @@ export default function GenderPage() {
       .catch(() => null)
       .then(data => {
         const cfg = data?.[gender];
-        if (cfg?.videoUrl) setVideoUrl(cfg.videoUrl);
-        if (cfg?.title)    setTitle(cfg.title);
+        // Prefer the backend stream endpoint (bypasses Caddy→MinIO) over raw videoUrl
+        if (cfg?.streamUrl) setVideoUrl(`${API_HOST}${cfg.streamUrl}`);
+        else if (cfg?.videoUrl) setVideoUrl(cfg.videoUrl);
+        if (cfg?.title)       setTitle(cfg.title);
         if (cfg?.description) setDesc(cfg.description);
         setLoading(false);
       });
