@@ -4,7 +4,7 @@ import { X, ArrowLeft, ArrowUpRight, Phone, Shield, Clock, Check } from 'lucide-
 import { API_URL } from '@/lib/config';
 
 interface Props { open: boolean; onClose: () => void; prefill?: string; }
-interface FormState { name: string; email: string; phone: string; goal: string; plan: string; }
+interface FormState { name: string; email: string; phone: string; goal: string; }
 
 function Field({ label, required, full, children }: { label: string; required?: boolean; full?: boolean; children: React.ReactNode }) {
   return (
@@ -18,7 +18,7 @@ function Field({ label, required, full, children }: { label: string; required?: 
 export default function JoinModal({ open, onClose, prefill }: Props) {
   const [step, setStep] = useState(0);
   const [submitting, setSubmitting] = useState(false);
-  const [form, setForm] = useState<FormState>({ name: '', email: '', phone: '', goal: 'fat-loss', plan: prefill || 'ascension' });
+  const [form, setForm] = useState<FormState>({ name: '', email: '', phone: '', goal: 'fat-loss' });
   const dlgRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -83,12 +83,12 @@ export default function JoinModal({ open, onClose, prefill }: Props) {
                 <Phone size={16} /> Appeler · +216 71 000 000
               </a>
               <button className="dt-btn dt-btn-primary dt-btn-lg" onClick={() => setStep(1)}>
-                Demander un rappel <ArrowUpRight size={16} />
+                Demander un rendez-vous <ArrowUpRight size={16} />
               </button>
             </div>
             <div className="dt-modal-foot">
               <span><Shield size={12} />Vos données restent dans le Temple</span>
-              <span><Clock size={12} />Rappel sous 24h ouvrées</span>
+              <span><Clock size={12} />Rendez-vous sous 24h ouvrées</span>
             </div>
           </div>
         )}
@@ -98,10 +98,10 @@ export default function JoinModal({ open, onClose, prefill }: Props) {
             <button type="button" className="dt-modal-back-btn" onClick={() => setStep(0)}>
               <ArrowLeft size={14} /> Retour
             </button>
-            <div className="dt-modal-eyebrow">— Demande de rappel</div>
-            <h2 className="dt-modal-title">Un conseiller vous appelle.</h2>
+            <div className="dt-modal-eyebrow">— Demande de rendez-vous</div>
+            <h2 className="dt-modal-title">Planifiez votre entretien.</h2>
             <p className="dt-modal-sub">
-              Remplissez le formulaire. Un conseiller DietTemple vous contacte sous 24h ouvrées pour échanger sur vos objectifs et choisir la formule adaptée.
+              Remplissez le formulaire. Un conseiller DietTemple vous contacte sous 24h ouvrées pour fixer votre rendez-vous et échanger sur vos objectifs.
             </p>
             <div className="dt-modal-grid">
               <Field label="Nom complet" required>
@@ -122,14 +122,6 @@ export default function JoinModal({ open, onClose, prefill }: Props) {
                   <option value="wellness">Santé & longévité</option>
                 </select>
               </Field>
-              <Field label="Formule envisagée">
-                <select value={form.plan} onChange={(e) => setForm({ ...form, plan: e.target.value })}>
-                  <option value="fondation">Fondation · 590 TND/mois</option>
-                  <option value="ascension">Ascension · 990 TND/mois</option>
-                  <option value="elite">Elite · sur entretien</option>
-                  <option value="undecided">À déterminer avec le conseiller</option>
-                </select>
-              </Field>
             </div>
             <label className="dt-modal-consent">
               <input type="checkbox" required defaultChecked />
@@ -141,7 +133,7 @@ export default function JoinModal({ open, onClose, prefill }: Props) {
               disabled={submitting}
               style={{ width: '100%', justifyContent: 'center' }}
             >
-              {submitting ? 'Envoi en cours…' : <>Demander mon rappel <ArrowUpRight size={16} /></>}
+              {submitting ? 'Envoi en cours…' : <>Demander mon rendez-vous <ArrowUpRight size={16} /></>}
             </button>
           </form>
         )}
@@ -149,10 +141,10 @@ export default function JoinModal({ open, onClose, prefill }: Props) {
         {step === 2 && (
           <div className="dt-modal-stage dt-modal-success">
             <div className="dt-modal-success-mark"><Check size={36} /></div>
-            <div className="dt-modal-eyebrow">— Demande reçue</div>
+            <div className="dt-modal-eyebrow">— Rendez-vous enregistré</div>
             <h2 className="dt-modal-title">Le Temple vous a entendu.</h2>
             <p className="dt-modal-sub">
-              Un conseiller vous rappelle au <b>{form.phone || 'numéro indiqué'}</b> sous 24 heures ouvrées.
+              Un conseiller vous contacte au <b>{form.phone || 'numéro indiqué'}</b> sous 24 heures ouvrées pour confirmer votre rendez-vous.
               D&apos;ici là, parcourez le système et préparez vos questions.
             </p>
             <div className="dt-modal-actions">
