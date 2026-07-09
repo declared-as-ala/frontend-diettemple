@@ -1,0 +1,437 @@
+@import url('../colors_and_type.css');
+
+.supportContainer {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--ink-0) 0%, var(--ink-1) 100%);
+  color: var(--bone);
+  overflow: hidden;
+}
+
+/* ============================================================
+   Hero Section
+   ============================================================ */
+
+.hero {
+  position: relative;
+  padding: clamp(60px, 10vw, 100px) 20px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.heroGlow {
+  position: absolute;
+  top: -50%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, var(--volt-glow) 0%, transparent 70%);
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.heroTitle {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 8vw, 72px);
+  font-weight: 700;
+  letter-spacing: -1px;
+  margin-bottom: 16px;
+  line-height: 1.1;
+}
+
+.highlight {
+  background: linear-gradient(135deg, var(--volt) 0%, var(--champagne) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+.heroSubtitle {
+  font-family: var(--font-body);
+  font-size: 18px;
+  color: var(--bone-2);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ============================================================
+   Content Wrapper
+   ============================================================ */
+
+.contentWrapper {
+  max-width: 1200px;
+  margin: 60px auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================================
+   Form Section
+   ============================================================ */
+
+.formSection {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+}
+
+.formCard {
+  background: linear-gradient(135deg, var(--ink-2) 0%, var(--ink-3) 100%);
+  border: 1px solid var(--line-strong);
+  border-radius: 20px;
+  padding: 60px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.formCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--volt-glow), transparent);
+}
+
+/* ============================================================
+   Messages
+   ============================================================ */
+
+.successMessage,
+.errorMessage {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+  padding: 20px 24px;
+  border-radius: 12px;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.successMessage {
+  background: rgba(200, 255, 61, 0.08);
+  border: 1px solid rgba(200, 255, 61, 0.2);
+}
+
+.errorMessage {
+  background: rgba(255, 77, 77, 0.08);
+  border: 1px solid rgba(255, 77, 77, 0.2);
+}
+
+.successIcon,
+.errorIcon {
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.successText h3,
+.errorText h3 {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 4px 0;
+}
+
+.successText p,
+.errorText p {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--bone-2);
+  margin: 0;
+}
+
+/* ============================================================
+   Form Styling
+   ============================================================ */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.label {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--bone);
+}
+
+.required {
+  color: var(--volt);
+}
+
+.input,
+.select,
+.textarea {
+  font-family: var(--font-body);
+  font-size: 16px;
+  padding: 14px 16px;
+  background: var(--ink-3);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  color: var(--bone);
+  transition: all 0.3s ease;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: var(--bone-3);
+}
+
+.input:hover,
+.select:hover,
+.textarea:hover {
+  border-color: var(--line-strong);
+  background: var(--ink-4);
+}
+
+.input:focus,
+.select:focus,
+.textarea:focus {
+  outline: none;
+  border-color: var(--volt);
+  background: var(--ink-3);
+  box-shadow: 0 0 0 3px rgba(200, 255, 61, 0.1);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 150px;
+}
+
+.select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath fill='%23F4F2EC' d='M4 6l4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 40px;
+}
+
+/* ============================================================
+   Submit Button
+   ============================================================ */
+
+.submitButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px 32px;
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: linear-gradient(135deg, var(--volt) 0%, var(--champagne) 100%);
+  color: var(--ink-0);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  margin-top: 12px;
+}
+
+.submitButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: left 0.3s ease;
+  z-index: -1;
+}
+
+.submitButton:hover:not(:disabled)::before {
+  left: 100%;
+}
+
+.submitButton:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(200, 255, 61, 0.3);
+}
+
+.submitButton:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.submitButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.arrow {
+  transition: transform 0.3s ease;
+  display: inline-block;
+}
+
+.submitButton:hover:not(:disabled) .arrow {
+  transform: translateX(4px);
+}
+
+.formFooter {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--bone-3);
+  text-align: center;
+  margin: 0;
+}
+
+/* ============================================================
+   Info Cards
+   ============================================================ */
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.infoCard {
+  background: linear-gradient(135deg, var(--ink-2) 0%, var(--ink-3) 100%);
+  border: 1px solid var(--line-strong);
+  border-radius: 16px;
+  padding: 32px 28px;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.infoCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--volt-glow), transparent);
+}
+
+.infoCard:hover {
+  transform: translateY(-4px);
+  border-color: var(--volt);
+  background: linear-gradient(135deg, var(--ink-3) 0%, var(--ink-2) 100%);
+  box-shadow: 0 12px 24px rgba(200, 255, 61, 0.1);
+}
+
+.infoIcon {
+  font-size: 40px;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.infoCard h3 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  color: var(--bone);
+}
+
+.infoCard p {
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--bone-2);
+  margin: 0;
+}
+
+/* ============================================================
+   Responsive Design
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .formCard {
+    padding: 40px 24px;
+  }
+
+  .heroTitle {
+    font-size: clamp(36px, 7vw, 48px);
+  }
+
+  .contentWrapper {
+    margin: 40px auto;
+  }
+
+  .formRow {
+    grid-template-columns: 1fr;
+  }
+
+  .submitButton {
+    width: 100%;
+  }
+
+  .infoGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 40px 16px;
+  }
+
+  .heroTitle {
+    font-size: clamp(32px, 6vw, 40px);
+  }
+
+  .heroSubtitle {
+    font-size: 16px;
+  }
+
+  .formCard {
+    padding: 32px 20px;
+  }
+
+  .contentWrapper {
+    padding: 0 16px;
+  }
+
+  .infoIcon {
+    font-size: 32px;
+  }
+}
