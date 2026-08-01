@@ -1,0 +1,119 @@
+.page {
+  min-height: 100vh;
+  background: var(--ink-1, #0b0d12);
+  color: var(--bone, #f2efe8);
+  padding: 96px 24px 96px;
+}
+
+.container {
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.header {
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--line-strong, rgba(242, 239, 232, 0.14));
+  padding-bottom: 32px;
+}
+
+.eyebrow {
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  color: var(--bone-3, rgba(242, 239, 232, 0.5));
+  text-transform: uppercase;
+  margin: 0 0 14px;
+}
+
+.title {
+  font-family: var(--font-display, inherit);
+  font-weight: 800;
+  font-size: clamp(32px, 5vw, 48px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0 0 12px;
+}
+
+.meta {
+  font-family: var(--font-mono, monospace);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--bone-3, rgba(242, 239, 232, 0.5));
+  margin: 0;
+}
+
+.toc {
+  margin: 0 0 48px;
+  padding: 20px 24px;
+  border: 1px solid var(--line-strong, rgba(242, 239, 232, 0.14));
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.toc ol {
+  margin: 0;
+  padding-left: 20px;
+  columns: 2;
+  column-gap: 24px;
+  font-size: 14px;
+  line-height: 2;
+}
+
+.toc a {
+  color: var(--bone-2, rgba(242, 239, 232, 0.75));
+  text-decoration: none;
+}
+
+.toc a:hover {
+  color: var(--volt, #c8ff3d);
+  text-decoration: underline;
+}
+
+.section {
+  margin-bottom: 40px;
+}
+
+.section h2 {
+  font-family: var(--font-display, inherit);
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: -0.01em;
+  margin: 0 0 16px;
+  scroll-margin-top: 24px;
+}
+
+.section h3 {
+  font-weight: 600;
+  font-size: 16px;
+  margin: 24px 0 8px;
+  color: var(--bone-2, rgba(242, 239, 232, 0.85));
+}
+
+.section p,
+.section li {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--bone-2, rgba(242, 239, 232, 0.85));
+}
+
+.section ul {
+  padding-left: 20px;
+  margin: 8px 0;
+}
+
+.section li {
+  margin-bottom: 8px;
+}
+
+.section a {
+  color: var(--volt, #c8ff3d);
+}
+
+@media (max-width: 640px) {
+  .page {
+    padding: 64px 16px 64px;
+  }
+  .toc ol {
+    columns: 1;
+  }
+}

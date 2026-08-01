@@ -32,7 +32,7 @@ export default function Footer() {
         <div className="dt-footer-bot">
           <div>© 2025 DietTemple — Ultimate Human Society.</div>
           <div className="dt-footer-bot-r">
-            <span>Confidentialité</span><span>CGU</span><span>Cookies</span>
+            <a href="/privacy-policy">Confidentialité</a><span>CGU</span><span>Cookies</span>
           </div>
         </div>
       </div>
