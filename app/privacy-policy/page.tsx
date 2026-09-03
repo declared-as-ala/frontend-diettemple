@@ -101,10 +101,9 @@ export default function PrivacyPolicyPage() {
           </p>
           <p>
             <strong>The photo you select or capture is uploaded to DietTemple&apos;s servers</strong>{' '}
-            and is sent to a third-party AI vision provider (<strong>OpenRouter</strong>, and as a
-            fallback <strong>Groq</strong>) so it can automatically estimate the meal&apos;s
+            and is sent to a third-party AI vision provider (<strong>Google Gemini</strong>) so it can automatically estimate the meal&apos;s
             calories and macronutrients. The same mechanism is used for the optional gym
-            check-in / presence-verification photo, which is analyzed by the same providers to
+            check-in / presence-verification photo, which is analyzed by the same provider to
             confirm you are at the gym.
           </p>
           <p>
@@ -133,7 +132,7 @@ export default function PrivacyPolicyPage() {
           </p>
           <ul>
             <li><strong>Hosting &amp; database:</strong> MongoDB Atlas (database hosting) and our application server host, [HOSTING PROVIDER], to run the DietTemple API and store your data.</li>
-            <li><strong>AI meal / gym-photo analysis:</strong> OpenRouter (openrouter.ai) and Groq — receive the specific photo you submit, solely to return an analysis result.</li>
+            <li><strong>AI meal / gym-photo analysis:</strong> Google Gemini receives the specific photo you submit, solely to return an analysis result.</li>
             <li><strong>Authentication:</strong> DietTemple uses its own email/password authentication (JSON Web Tokens). We do not currently offer or use third-party social sign-in (e.g. Google or Apple Sign-In).</li>
             <li><strong>Payments &amp; subscriptions:</strong> ClickToPay, operated by Société Monétique Tunisie, processes card payments for subscriptions and orders. DietTemple does not store your full card number.</li>
             <li><strong>App distribution &amp; updates:</strong> Expo / Expo Application Services (EAS) is used to build and deliver app updates.</li>
