@@ -180,6 +180,10 @@ img { max-width: 100%; }
 .dt-cine-portrait .dt-cine-figure { background: radial-gradient(closest-side at 50% 22%, rgba(244,242,236,.10), transparent 60%), radial-gradient(40% 14% at 50% 40%, rgba(244,242,236,.08), transparent 70%), radial-gradient(30% 28% at 50% 70%, rgba(244,242,236,.05), transparent 70%), linear-gradient(115deg, transparent 40%, rgba(200,255,61,.05) 55%, transparent 65%); }
 .dt-cine-portrait { background: linear-gradient(180deg, #15171f 0%, #05060A 100%); }
 .dt-cine-label { position: absolute; left: 16px; bottom: 12px; font-family: var(--font-mono); font-size: 10px; letter-spacing: .2em; color: var(--bone-3); text-transform: uppercase; z-index: 2; }
+.dt-hero-video { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; object-position: center center; background: var(--ink-0); }
+.dt-hero-sound { position: absolute; z-index: 4; right: max(var(--gutter), 20px); bottom: 28px; display: inline-flex; min-height: 44px; align-items: center; gap: 9px; padding: 0 15px; border: 1px solid rgba(244,242,236,.25); border-radius: 999px; background: rgba(5,6,10,.68); color: var(--bone); font-family: var(--font-mono); font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; backdrop-filter: blur(12px); cursor: pointer; transition: border-color var(--dur-micro) var(--ease), background var(--dur-micro) var(--ease), color var(--dur-micro) var(--ease); }
+.dt-hero-sound:hover { border-color: rgba(200,255,61,.62); background: rgba(11,13,18,.88); color: var(--volt); }
+.dt-hero-sound:focus-visible { outline: 2px solid var(--volt); outline-offset: 3px; }
 .dt-hero-glow { position: absolute; width: 60vw; height: 60vw; right: -20%; top: -10%; background: radial-gradient(circle, rgba(200,255,61,.22), transparent 60%); filter: blur(8px); animation: dtFloat 8s var(--ease) infinite; }
 .dt-hero-content { position: relative; z-index: 2; max-width: var(--max-w); margin: 0 auto; padding: 0 var(--gutter); padding-top: 40px; }
 @media (min-width: 900px){ .dt-hero-content { padding: 40px var(--gutter-lg) 0; } }
@@ -1850,6 +1854,10 @@ main { position: relative; z-index: 0; isolation: isolate; }
 }
 @media (max-height: 680px) {
   .dt-hero-scrollhint { display: none; }
+}
+@media (max-width: 640px) {
+  .dt-hero-video { object-position: 58% center; }
+  .dt-hero-sound { right: var(--gutter); bottom: 20px; min-height: 44px; padding: 0 13px; }
 }
 
 /* ── Movement ──────────────────────────────────────────────────────── */

@@ -1,5 +1,4 @@
 import { Activity, Sliders, ArrowUpRight, CheckCircle2, FlaskConical } from 'lucide-react';
-import ScienceFilm from './ScienceFilm';
 
 interface ScienceProps {
   onJoin?: () => void;
@@ -24,8 +23,6 @@ export default function Science({ onJoin }: ScienceProps) {
             Conçu à l&apos;intersection de la rigueur des études en pharmacie et de plus de 10 ans d&apos;expérience intensive sur le terrain, le système UH synthétise les données validées en biomécanique, hypertrophie et nutrition clinique pour les traduire en instructions concrètes :
           </p>
         </div>
-
-        <ScienceFilm />
 
         {/* 2 Key Pillars / Instructions */}
         <div className="dt-science-grid">

@@ -1,7 +1,6 @@
 'use client';
-import { useEffect, useState } from 'react';
-import { ArrowUpRight } from 'lucide-react';
-import Image from 'next/image';
+import { useEffect, useRef, useState } from 'react';
+import { ArrowUpRight, Volume2, VolumeX } from 'lucide-react';
 
 interface HeroProps { onJoin: () => void; }
 
@@ -9,6 +8,9 @@ type Particle = { key: number; x: string; y: string; s: string; d: string; delay
 
 export default function Hero({ onJoin }: HeroProps) {
   const [particles, setParticles] = useState<Particle[]>([]);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isMuted, setIsMuted] = useState(true);
+  const [reducedMotion, setReducedMotion] = useState(true);
 
   useEffect(() => {
     setParticles(
@@ -25,6 +27,30 @@ export default function Hero({ onJoin }: HeroProps) {
   }, []);
 
   useEffect(() => {
+    const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const syncPreference = () => setReducedMotion(preference.matches);
+    syncPreference();
+    preference.addEventListener('change', syncPreference);
+    return () => preference.removeEventListener('change', syncPreference);
+  }, []);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    if (reducedMotion) video.pause();
+    else video.play().catch(() => undefined);
+  }, [reducedMotion]);
+
+  const toggleSound = () => {
+    const video = videoRef.current;
+    if (!video) return;
+    const nextMuted = !video.muted;
+    video.muted = nextMuted;
+    setIsMuted(nextMuted);
+    if (!nextMuted) video.play().catch(() => undefined);
+  };
+
+  useEffect(() => {
     const onScroll = () => {
       const y = window.scrollY;
       const cine = document.querySelector<HTMLElement>('.dt-hero-section .dt-cine');
@@ -39,18 +65,34 @@ export default function Hero({ onJoin }: HeroProps) {
   return (
     <header className="dt-hero-section" id="top">
       <div className="dt-cine dt-cine-hero" style={{ position: 'absolute', inset: 0, aspectRatio: 'auto', borderRadius: 0 }}>
-        <Image
-          src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1800&q=85&fit=crop"
-          alt="UH — Ultimate Human"
-          fill
-          sizes="100vw"
-          style={{ objectFit: 'cover', objectPosition: 'right center' }}
-          priority
-        />
+        <video
+          ref={videoRef}
+          className="dt-hero-video"
+          autoPlay={!reducedMotion}
+          muted={isMuted}
+          loop
+          playsInline
+          preload="metadata"
+          poster="/video-poster.webp"
+          aria-label="UH — entraînement et nutrition fondés sur la science"
+        >
+          <source src="/video.mp4" type="video/mp4" />
+          Votre navigateur ne prend pas en charge la lecture vidéo.
+        </video>
         <div className="dt-cine-grade" />
         <div className="dt-cine-figure" aria-hidden />
         <div className="dt-cine-grain" />
         <div className="dt-hero-glow" />
+        <button
+          type="button"
+          className="dt-hero-sound"
+          onClick={toggleSound}
+          aria-label={isMuted ? 'Activer le son de la vidéo' : 'Couper le son de la vidéo'}
+          aria-pressed={!isMuted}
+        >
+          {isMuted ? <VolumeX size={17} aria-hidden="true" /> : <Volume2 size={17} aria-hidden="true" />}
+          <span>{isMuted ? 'Activer le son' : 'Son activé'}</span>
+        </button>
         <div className="dt-hero-particles" aria-hidden>
           {particles.map((p) => (
             <span key={p.key} style={{
