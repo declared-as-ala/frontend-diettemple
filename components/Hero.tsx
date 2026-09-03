@@ -2,7 +2,6 @@
 import { useEffect, useState } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import Image from 'next/image';
-import CountUp from './CountUp';
 
 interface HeroProps { onJoin: () => void; }
 
@@ -42,7 +41,7 @@ export default function Hero({ onJoin }: HeroProps) {
       <div className="dt-cine dt-cine-hero" style={{ position: 'absolute', inset: 0, aspectRatio: 'auto', borderRadius: 0 }}>
         <Image
           src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1800&q=85&fit=crop"
-          alt="Ultimate Human"
+          alt="UH — Ultimate Human"
           fill
           sizes="100vw"
           style={{ objectFit: 'cover', objectPosition: 'right center' }}
@@ -64,30 +63,34 @@ export default function Hero({ onJoin }: HeroProps) {
 
       <div className="dt-hero-content">
         <div className="dt-hero-eyebrow">
-          <span className="dt-pip" /> Ultimate Human Society · Est. 2025
+          <span className="dt-pip" /> UH — ULTIMATE HUMAN
         </div>
+
         <h1 className="dt-hero-headline">
-          Devenez<br />
-          l&apos;<em>ultimate</em><br />
-          human.
+          ARRÊTEZ DE DEVINER.<br />
+          <em>COMMENCEZ À PROGRESSER.</em>
         </h1>
+
+        <div className="dt-hero-sub-block">
+          <div className="dt-hero-brand-tag">UH — Ultimate Human</div>
+          <p className="dt-hero-lead-text">
+            Le premier système 100 % tunisien d&apos;entraînement et de nutrition fondé sur la science.
+          </p>
+        </div>
+
         <p className="dt-hero-sub">
-          Une société de transformation. Nutrition scientifique, entraînement intelligent,
-          coaching hebdomadaire, et une ascension par rangs : de <em>Initiate</em> à <em>Elite</em>.
-          Votre version actuelle n&apos;est qu&apos;un brouillon.
+          Né de la rencontre entre la rigueur clinique des études en pharmacie et plus de 10 ans d&apos;expérience du terrain en salle de sport, UH s&apos;adapte à votre biologie unique pour garantir une progression mesurable, sans perte de temps ni frustration.
         </p>
-        <div className="dt-hero-ctas">
-          <button className="dt-btn dt-btn-primary" onClick={onJoin}>
-            Rejoindre Ultimate Human <ArrowUpRight size={16} />
+
+        <div className="dt-hero-ctas" style={{ marginBottom: 16 }}>
+          <button className="dt-btn dt-btn-primary dt-btn-lg" onClick={onJoin}>
+            REJOINDRE UH <ArrowUpRight size={18} />
           </button>
-          <a className="dt-btn dt-btn-ghost" href="#systeme">Découvrir le Système</a>
         </div>
-        <div className="dt-hero-stats">
-          <Stat n={<CountUp to={14200} />} l="Membres en ascension" />
-          <Stat n={<><span>−</span><CountUp to={14.2} decimals={1} suffix=" %" /></>} l="Masse grasse moy. · 90 j" volt />
-          <Stat n={<CountUp to={4} />} l="Rangs du Temple" />
-          <Stat n={<CountUp to={1} format={(n) => String(n).padStart(2, '0')} />} l="Mise à jour hebdo" />
-        </div>
+
+        <p className="dt-hero-disclaimer">
+          *Votre parcours commence par une évaluation diagnostique individuelle chez DietTemple
+        </p>
       </div>
 
       <div className="dt-hero-scrollhint">
@@ -95,14 +98,5 @@ export default function Hero({ onJoin }: HeroProps) {
         <span className="dt-hero-scrollline" />
       </div>
     </header>
-  );
-}
-
-function Stat({ n, l, volt }: { n: React.ReactNode; l: string; volt?: boolean }) {
-  return (
-    <div className="dt-hero-stat">
-      <div className={`dt-hero-stat-n ${volt ? 'volt' : ''}`}>{n}</div>
-      <div className="dt-hero-stat-l">{l}</div>
-    </div>
   );
 }

@@ -7,6 +7,7 @@ import { ArrowLeft, ShoppingCart, Check, Zap, Lock, Shield, Truck, RefreshCw, St
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import JoinModal from '@/components/JoinModal';
+import UHPromoCard from '@/components/UHPromoCard';
 import { useCart } from '@/lib/cartContext';
 import { useAuth } from '@/lib/authContext';
 import { API_URL } from '@/lib/config';
@@ -239,8 +240,11 @@ export default function ProductDetailPage() {
             </div>
           ) : null}
 
+          {/* UH Luxury Promotional Card */}
+          <UHPromoCard onDiscover={() => setJoinOpen(true)} />
+
           {/* Back link */}
-          <div style={{ marginTop: 48 }}>
+          <div style={{ marginTop: 24 }}>
             <button className="dt-btn dt-btn-ghost" onClick={() => router.back()}>
               <ArrowLeft size={15} /> Retour à la boutique
             </button>

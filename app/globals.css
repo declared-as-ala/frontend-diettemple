@@ -181,13 +181,13 @@ img { max-width: 100%; }
 .dt-cine-portrait { background: linear-gradient(180deg, #15171f 0%, #05060A 100%); }
 .dt-cine-label { position: absolute; left: 16px; bottom: 12px; font-family: var(--font-mono); font-size: 10px; letter-spacing: .2em; color: var(--bone-3); text-transform: uppercase; z-index: 2; }
 .dt-hero-glow { position: absolute; width: 60vw; height: 60vw; right: -20%; top: -10%; background: radial-gradient(circle, rgba(200,255,61,.22), transparent 60%); filter: blur(8px); animation: dtFloat 8s var(--ease) infinite; }
-.dt-hero-content { position: relative; z-index: 2; max-width: var(--max-w); margin: 0 auto; padding: 0 var(--gutter); padding-top: 60px; }
-@media (min-width: 900px){ .dt-hero-content { padding: 80px var(--gutter-lg) 0; } }
-.dt-hero-eyebrow { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-size: 11px; letter-spacing: .22em; color: var(--bone-2); text-transform: uppercase; padding: 8px 14px; border: 1px solid var(--line-strong); border-radius: 999px; background: rgba(11,13,18,.5); backdrop-filter: blur(10px); margin-bottom: 32px; animation: dtHeroIn 1.2s var(--ease) .05s backwards; }
+.dt-hero-content { position: relative; z-index: 2; max-width: var(--max-w); margin: 0 auto; padding: 0 var(--gutter); padding-top: 40px; }
+@media (min-width: 900px){ .dt-hero-content { padding: 40px var(--gutter-lg) 0; } }
+.dt-hero-eyebrow { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-size: 11px; letter-spacing: .22em; color: var(--bone-2); text-transform: uppercase; padding: 7px 14px; border: 1px solid var(--line-strong); border-radius: 999px; background: rgba(11,13,18,.5); backdrop-filter: blur(10px); margin-bottom: 24px; animation: dtHeroIn 1.2s var(--ease) .05s backwards; }
 .dt-pip { width: 6px; height: 6px; border-radius: 50%; background: var(--volt); box-shadow: 0 0 10px var(--volt-glow); }
-.dt-hero-headline { font-family: var(--font-display); font-weight: 800; font-size: clamp(56px, 11vw, 168px); line-height: .9; letter-spacing: -.045em; text-transform: uppercase; margin: 0 0 28px; color: var(--bone); animation: dtHeroIn 1.2s var(--ease) .15s backwards; }
-.dt-hero-headline em { font-style: italic; font-family: var(--font-editorial); font-weight: 300; text-transform: none; letter-spacing: -.02em; background: linear-gradient(180deg, var(--volt), var(--volt-deep)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
-.dt-hero-sub { max-width: 50ch; font-size: 17px; line-height: 1.6; color: var(--bone-2); margin: 0 0 36px; animation: dtHeroIn 1.2s var(--ease) .35s backwards; }
+.dt-hero-headline { font-family: var(--font-display); font-weight: 800; font-size: clamp(26px, 3.8vw, 48px); line-height: 1.12; letter-spacing: -.03em; text-transform: uppercase; margin: 0 0 20px; color: var(--bone); animation: dtHeroIn 1.2s var(--ease) .15s backwards; }
+.dt-hero-headline em { font-style: italic; font-family: var(--font-editorial); font-weight: 300; text-transform: none; letter-spacing: -.015em; background: linear-gradient(180deg, var(--volt), var(--volt-deep)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.dt-hero-sub { max-width: 58ch; font-size: 15px; line-height: 1.6; color: var(--bone-2); margin: 0 0 28px; animation: dtHeroIn 1.2s var(--ease) .35s backwards; }
 .dt-hero-sub em { font-style: normal; color: var(--bone); }
 .dt-hero-ctas { display: flex; gap: 12px; margin-bottom: 80px; flex-wrap: wrap; animation: dtHeroIn 1.2s var(--ease) .55s backwards; }
 .dt-hero-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px 32px; padding-top: 32px; border-top: 1px solid var(--line); max-width: 720px; animation: dtHeroIn 1.2s var(--ease) .75s backwards; }
@@ -1937,3 +1937,506 @@ main { position: relative; z-index: 0; isolation: isolate; }
   .dt-modal-actions { flex-direction: column; }
   .dt-modal-actions .dt-btn { width: 100%; justify-content: center; }
 }
+
+/* ==========================================================================
+   UH / ULTIMATE HUMAN — Dedicated Section Styles
+   ========================================================================== */
+
+/* Hero sub-block & elements */
+.dt-hero-sub-block {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.dt-hero-brand-tag {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.18em;
+  color: var(--volt);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.dt-hero-lead-text {
+  font-family: var(--font-display);
+  font-size: clamp(16px, 1.8vw, 22px);
+  font-weight: 700;
+  color: var(--bone);
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+  max-width: 48ch;
+  margin: 0;
+}
+.dt-hero-disclaimer {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--bone-3);
+  margin: 0;
+  max-width: 50ch;
+}
+
+/* Mission Section (01) */
+.dt-mission-section {
+  position: relative;
+  background: var(--ink-1);
+  padding: clamp(60px, 8vw, 100px) 0;
+}
+.dt-mission-header {
+  margin-bottom: 36px;
+}
+.dt-mission-main-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(26px, 3.8vw, 44px);
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  color: var(--bone);
+  margin: 0;
+}
+.dt-mission-main-title em {
+  font-style: italic;
+  font-family: var(--font-editorial);
+  font-weight: 300;
+  background: linear-gradient(180deg, var(--volt), var(--volt-deep));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Narrative Story Card */
+.dt-mission-story-box {
+  position: relative;
+  background: linear-gradient(180deg, rgba(19, 22, 30, 0.75) 0%, rgba(11, 13, 18, 0.95) 100%);
+  border: 1px solid var(--line-strong);
+  border-radius: 24px;
+  padding: clamp(28px, 4vw, 44px);
+  margin-bottom: 28px;
+  overflow: hidden;
+  box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.7);
+}
+.dt-story-glow {
+  position: absolute;
+  width: 60%;
+  height: 60%;
+  right: -10%;
+  top: -10%;
+  background: radial-gradient(circle, rgba(200, 255, 61, 0.08), transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
+}
+.dt-story-lead {
+  font-family: var(--font-display);
+  font-size: clamp(18px, 2vw, 22px);
+  font-weight: 700;
+  color: var(--bone);
+  letter-spacing: -0.015em;
+  margin-bottom: 14px;
+}
+.dt-story-paragraph {
+  font-size: clamp(14.5px, 1.3vw, 16px);
+  line-height: 1.75;
+  color: var(--bone-2);
+  margin: 0 0 20px;
+  max-width: 80ch;
+}
+.dt-story-paragraph-muted {
+  margin-bottom: 0;
+  color: var(--bone-2);
+}
+
+/* Central Quote Focal Point */
+.dt-story-focal-quote {
+  position: relative;
+  background: linear-gradient(135deg, rgba(200, 255, 61, 0.06), rgba(11, 13, 18, 0.85));
+  border: 1px solid rgba(200, 255, 61, 0.35);
+  border-radius: 18px;
+  padding: 24px 32px;
+  margin: 24px 0;
+  text-align: center;
+  box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.8), 0 0 40px -15px var(--volt-glow-soft);
+  overflow: hidden;
+}
+.dt-quote-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(200, 255, 61, 0.12), transparent 75%);
+  pointer-events: none;
+}
+.dt-quote-mark {
+  display: block;
+  font-family: var(--font-editorial);
+  font-size: 32px;
+  color: var(--volt);
+  opacity: 0.7;
+  line-height: 0.8;
+  margin-bottom: 6px;
+}
+.dt-quote-phrase {
+  position: relative;
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-size: clamp(20px, 2.5vw, 28px);
+  color: var(--bone);
+  line-height: 1.35;
+  margin: 0;
+}
+
+/* Two Principle Pillars Grid */
+.dt-mission-pillars-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+@media (min-width: 840px) {
+  .dt-mission-pillars-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+}
+.dt-mission-pillar-card {
+  background: var(--ink-2);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: clamp(26px, 3vw, 34px);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  overflow: hidden;
+  transition: all var(--dur-base) var(--ease);
+}
+.dt-mission-pillar-card:hover {
+  border-color: rgba(200, 255, 61, 0.35);
+  transform: translateY(-2px);
+  box-shadow: 0 24px 50px -20px rgba(0, 0, 0, 0.9), 0 0 30px -15px var(--volt-glow-soft);
+}
+.dt-pillar-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.dt-pillar-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dt-pillar-icon-alert {
+  background: rgba(200, 255, 61, 0.08);
+  border: 1px solid rgba(200, 255, 61, 0.25);
+  color: var(--volt);
+}
+.dt-pillar-icon-compass {
+  background: rgba(216, 201, 163, 0.08);
+  border: 1px solid rgba(216, 201, 163, 0.25);
+  color: var(--champagne);
+}
+.dt-pillar-badge {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--bone-3);
+  text-transform: uppercase;
+}
+.dt-pillar-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.dt-pillar-headline {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(16px, 1.6vw, 19px);
+  letter-spacing: -0.015em;
+  color: var(--bone);
+  line-height: 1.35;
+  margin: 0;
+}
+.dt-highlight-volt {
+  color: var(--volt);
+}
+.dt-highlight-champagne {
+  color: var(--champagne);
+}
+.dt-pillar-desc {
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: var(--bone-2);
+  margin: 0;
+}
+
+/* Science Section (02) */
+.dt-science-section {
+  position: relative;
+  background: var(--ink-0);
+}
+.dt-science-lead-quote {
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-size: clamp(22px, 2.8vw, 32px);
+  color: var(--champagne);
+  margin-bottom: 16px;
+}
+
+/* Science film — viewport-aware playback is handled by ScienceFilm.tsx. */
+.dt-science-film {
+  width: 100%;
+  margin: clamp(36px, 5vw, 64px) 0 48px;
+}
+.dt-science-film-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 8.4;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+  border-radius: 24px;
+  background: var(--ink-2);
+  box-shadow: 0 36px 90px -42px rgba(0, 0, 0, .95), 0 0 60px -44px var(--volt-glow);
+  isolation: isolate;
+  contain: layout paint;
+}
+.dt-science-film-video {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  background: var(--ink-2);
+}
+.dt-science-film-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(5, 6, 10, .58) 0%, transparent 25%, transparent 62%, rgba(5, 6, 10, .82) 100%),
+    linear-gradient(90deg, rgba(5, 6, 10, .22), transparent 24%, transparent 76%, rgba(5, 6, 10, .18));
+}
+.dt-science-film-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: .13;
+  background-image:
+    linear-gradient(rgba(200, 255, 61, .16) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200, 255, 61, .16) 1px, transparent 1px);
+  background-size: 80px 80px;
+  -webkit-mask-image: linear-gradient(to bottom, black, transparent 28%, transparent 74%, black);
+  mask-image: linear-gradient(to bottom, black, transparent 28%, transparent 74%, black);
+}
+.dt-science-film-topline,
+.dt-science-film-caption {
+  position: absolute;
+  z-index: 3;
+  left: clamp(18px, 3vw, 36px);
+  right: clamp(18px, 3vw, 36px);
+  display: flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .16em;
+  color: rgba(244, 242, 236, .78);
+  text-transform: uppercase;
+}
+.dt-science-film-topline {
+  top: clamp(18px, 2.5vw, 30px);
+  justify-content: space-between;
+}
+.dt-science-film-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--volt);
+}
+.dt-science-film-live i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--volt);
+  box-shadow: 0 0 12px var(--volt-glow);
+}
+.dt-science-film-caption {
+  bottom: clamp(18px, 2.5vw, 30px);
+  gap: clamp(10px, 2vw, 22px);
+  color: var(--bone);
+}
+.dt-science-film-caption i {
+  width: 3px;
+  height: 3px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--volt);
+}
+@media (max-width: 800px) {
+  .dt-science-film-frame { aspect-ratio: 16 / 10; border-radius: 20px; }
+  .dt-science-film-grid { background-size: 56px 56px; }
+}
+@media (max-width: 560px) {
+  .dt-science-film { margin: 32px 0 36px; }
+  .dt-science-film-frame { aspect-ratio: 4 / 3; border-radius: 18px; }
+  .dt-science-film-video { object-position: center center; }
+  .dt-science-film-topline { font-size: 8px; letter-spacing: .12em; }
+  .dt-science-film-caption { justify-content: space-between; gap: 6px; font-size: 8px; letter-spacing: .1em; }
+}
+@media (max-width: 360px) {
+  .dt-science-film-topline > span:first-child { display: none; }
+  .dt-science-film-topline { justify-content: flex-end; }
+}
+.dt-science-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  margin-top: 40px;
+}
+@media (min-width: 800px) {
+  .dt-science-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+}
+.dt-science-card {
+  background: var(--ink-2);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 36px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  position: relative;
+  overflow: hidden;
+  transition: all var(--dur-base) var(--ease);
+}
+.dt-science-card:hover {
+  border-color: rgba(200, 255, 61, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 30px 80px -30px var(--volt-glow);
+}
+.dt-science-card-badge {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.dt-science-badge-num {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  color: var(--volt);
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(200, 255, 61, 0.08);
+  border: 1px solid rgba(200, 255, 61, 0.25);
+}
+.dt-science-icon {
+  color: var(--volt);
+}
+.dt-science-card-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(20px, 2.2vw, 24px);
+  letter-spacing: -0.02em;
+  color: var(--bone);
+  margin: 0;
+  line-height: 1.25;
+}
+.dt-science-card-body {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--bone-2);
+  margin: 0;
+  flex: 1;
+}
+.dt-science-card-foot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--volt);
+}
+.dt-science-synthesis {
+  margin-top: 40px;
+  background: linear-gradient(135deg, var(--ink-2), #151821);
+  border: 1px solid var(--line-strong);
+  border-radius: 20px;
+  padding: 32px 36px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+@media (max-width: 700px) {
+  .dt-science-synthesis {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px 20px;
+  }
+}
+.dt-science-synthesis-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: rgba(200, 255, 61, 0.1);
+  border: 1px solid rgba(200, 255, 61, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--volt);
+  flex-shrink: 0;
+}
+.dt-science-synthesis-text {
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--bone);
+  margin: 0;
+  font-weight: 500;
+}
+.dt-science-impact {
+  margin-top: 60px;
+  position: relative;
+  background: var(--ink-1);
+  border: 1px solid var(--line-strong);
+  border-radius: 28px;
+  padding: clamp(48px, 8vw, 80px) clamp(24px, 5vw, 64px);
+  text-align: center;
+  overflow: hidden;
+}
+.dt-impact-glow {
+  position: absolute;
+  width: 80%;
+  height: 80%;
+  left: 10%;
+  top: 10%;
+  background: radial-gradient(circle, rgba(200, 255, 61, 0.18), transparent 60%);
+  filter: blur(24px);
+  pointer-events: none;
+}
+.dt-impact-title {
+  position: relative;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(26px, 4.5vw, 48px);
+  letter-spacing: -0.03em;
+  color: var(--bone);
+  margin: 0 0 32px;
+  line-height: 1.15;
+}
+.dt-impact-cta-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+@media (max-width: 640px) {
+  .dt-hide-mob { display: none; }
+}
+

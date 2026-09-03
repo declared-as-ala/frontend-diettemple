@@ -38,10 +38,8 @@ export default function Nav({ onJoin }: NavProps) {
   const mobileLinks: { href: string; label: string; anchor?: boolean }[] = [
     ...(isHome
       ? [
-          { href: '#systeme', label: 'Le Système',      anchor: true },
-          { href: '#rangs',   label: 'Les Rangs',        anchor: true },
-          { href: '#app',     label: "L'Application",    anchor: true },
-          { href: '#societe', label: 'La Société',       anchor: true },
+          { href: '#mission', label: 'Notre Mission', anchor: true },
+          { href: '#science', label: 'Fondé sur la Science', anchor: true },
         ]
       : [{ href: '/', label: 'Accueil' }]),
     { href: '/produits', label: 'Boutique' },
@@ -63,10 +61,8 @@ export default function Nav({ onJoin }: NavProps) {
           <div className="dt-nav-links">
             {isHome ? (
               <>
-                <a href="#systeme">Le Système</a>
-                <a href="#rangs">Les Rangs</a>
-                <a href="#app">L&apos;Application</a>
-                <a href="#societe">La Société</a>
+                <a href="#mission">Notre Mission</a>
+                <a href="#science">Fondé sur la Science</a>
               </>
             ) : (
               <Link href="/" style={{ color: 'var(--bone-2)' }}>Accueil</Link>
