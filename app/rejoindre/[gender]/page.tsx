@@ -2,8 +2,9 @@
 import { useEffect, useState } from 'react';
 import { useParams, notFound } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft, ArrowUpRight, Phone } from 'lucide-react';
-import { API_URL } from '@/lib/config';
+import Image from 'next/image';
+import { ArrowLeft, ArrowUpRight, Phone, CalendarCheck } from 'lucide-react';
+import { API_URL, CONTACT_PHONE } from '@/lib/config';
 import JoinModal from '@/components/JoinModal';
 
 /* ── Config ───────────────────────────────────────────────────────────────── */
@@ -13,15 +14,13 @@ const GENDER_META = {
   homme: {
     emoji: '♂',
     label: 'Homme',
-    sub: 'Force & Muscle',
-    desc: 'Programme conçu pour la transformation masculine : prise de masse, force et nutrition optimisées.',
+    desc: 'Programme conçu pour la transformation masculine : force, hypertrophie et nutrition clinique sur mesure.',
     prefill: 'ascension',
   },
   femme: {
     emoji: '♀',
     label: 'Femme',
-    sub: 'Forme & Vitalité',
-    desc: 'Un programme pensé pour la femme moderne : silhouette, tonus et énergie durable.',
+    desc: 'Un programme pensé pour la femme : tonus, recomposition corporelle et énergie durable.',
     prefill: 'fondation',
   },
 } as const;
@@ -70,6 +69,7 @@ export default function GenderPage() {
   const [desc,     setDesc]     = useState('');
   const [loading,  setLoading]  = useState(true);
   const [joinOpen, setJoinOpen] = useState(false);
+  const [started,  setStarted]  = useState(false);
 
   useEffect(() => {
     fetch(`${API_HOST}/api/landing/videos`)
@@ -95,6 +95,7 @@ export default function GenderPage() {
             <ArrowLeft size={14} /> Choisir
           </Link>
           <Link href="/" className="dt-brand">
+            <Image src="/logo.webp" alt="DietTemple" width={26} height={26} />
             <span>Diet<em>Temple</em></span>
           </Link>
           <div className="rj-step">Étape 2 · Votre programme</div>
@@ -109,12 +110,12 @@ export default function GenderPage() {
           <span className="rj-gender-emoji">{meta.emoji}</span>
           <div>
             <div className="rj-gender-label">{meta.label}</div>
-            <div className="rj-gender-sub">{meta.sub}</div>
+            <div className="rj-gender-sub">Ultimate Human Society</div>
           </div>
         </div>
 
-        {/* Video player */}
-        <div className="rj-player-wrap">
+        {/* Collapsible Video Player Section */}
+        <div className={`rj-player-transition-wrap ${started ? 'is-collapsed' : ''}`}>
           <div className="rj-player">
 
             <div className="rj-player-head">
@@ -138,21 +139,65 @@ export default function GenderPage() {
               <p className="rj-player-desc">
                 {desc || meta.desc}
               </p>
-              <div className="rj-player-ctas">
-                <a className="dt-btn dt-btn-ghost" href="tel:+21671000000">
-                  <Phone size={14} /> Appeler
-                </a>
+              {/* Initial state: single primary CTA "Commencer mon parcours" */}
+              <div className="rj-player-ctas" style={{ justifyContent: 'center' }}>
                 <button
                   className="dt-btn dt-btn-primary dt-btn-lg"
-                  onClick={() => setJoinOpen(true)}
+                  onClick={() => setStarted(true)}
+                  style={{ minWidth: 260, justifyContent: 'center' }}
                 >
-                  Commencer mon parcours <ArrowUpRight size={16} />
+                  COMMENCER MON PARCOURS <ArrowUpRight size={16} />
                 </button>
               </div>
             </div>
 
           </div>
         </div>
+
+        {/* Post-"Commencer mon parcours" Contact Actions */}
+        {started && (
+          <div className="rj-contact-stage">
+            <div className="dt-eyebrow" style={{ color: 'var(--volt)', marginBottom: 12 }}>
+              — Prêt pour votre transformation
+            </div>
+            <h2 style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: 'clamp(24px, 4vw, 36px)',
+              fontWeight: 800,
+              letterSpacing: '-0.025em',
+              color: 'var(--bone)',
+              margin: '0 0 14px',
+              textAlign: 'center',
+            }}>
+              Activez votre parcours UH {meta.label}
+            </h2>
+            <p style={{
+              fontSize: 15,
+              lineHeight: 1.6,
+              color: 'var(--bone-2)',
+              maxWidth: '52ch',
+              margin: '0 auto',
+            }}>
+              Prenez rendez-vous directement pour votre évaluation diagnostique ou appelez notre équipe dédiée pour échanger immédiatement.
+            </p>
+
+            <div className="rj-contact-actions">
+              <button
+                className="dt-btn dt-btn-primary dt-btn-lg"
+                onClick={() => setJoinOpen(true)}
+              >
+                <CalendarCheck size={18} /> DEMANDER UN RENDEZ-VOUS
+              </button>
+              <a
+                className="dt-btn dt-btn-ghost dt-btn-lg"
+                href={`tel:${CONTACT_PHONE}`}
+              >
+                <Phone size={18} /> APPELER
+              </a>
+            </div>
+          </div>
+        )}
+
       </main>
 
       <JoinModal

@@ -1,5 +1,6 @@
 'use client';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 
 export default function RejoindrePage() {
@@ -12,6 +13,7 @@ export default function RejoindrePage() {
             <ArrowLeft size={14} /> Retour
           </Link>
           <Link href="/" className="dt-brand">
+            <Image src="/logo.webp" alt="DietTemple" width={26} height={26} />
             <span>Diet<em>Temple</em></span>
           </Link>
           <div className="rj-step">Étape 1 · Choisissez votre voie</div>
@@ -36,20 +38,18 @@ export default function RejoindrePage() {
           pour votre physiologie et vos objectifs.
         </p>
 
-        {/* Gender choice cards — each navigates to its own page */}
+        {/* Gender choice cards — clean HOMME / FEMME without descriptive subtitles */}
         <div className="rj-cards">
 
           <Link href="/rejoindre/homme" className="rj-card rj-card-homme rj-card-link">
             <div className="rj-card-badge">♂</div>
             <div className="rj-card-label">Homme</div>
-            <div className="rj-card-sub">Force &amp; Muscle</div>
             <div className="rj-card-arrow"><ArrowRight size={20} /></div>
           </Link>
 
           <Link href="/rejoindre/femme" className="rj-card rj-card-femme rj-card-link">
             <div className="rj-card-badge">♀</div>
             <div className="rj-card-label">Femme</div>
-            <div className="rj-card-sub">Forme &amp; Vitalité</div>
             <div className="rj-card-arrow"><ArrowRight size={20} /></div>
           </Link>
 

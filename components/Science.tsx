@@ -1,4 +1,5 @@
-import { Activity, Sliders, ArrowUpRight, CheckCircle2, FlaskConical } from 'lucide-react';
+import Image from 'next/image';
+import { Activity, Sliders, ArrowUpRight, CheckCircle2, FlaskConical, Sparkles } from 'lucide-react';
 
 interface ScienceProps {
   onJoin?: () => void;
@@ -9,19 +10,70 @@ export default function Science({ onJoin }: ScienceProps) {
     <section className="dt-section dt-science-section" id="science">
       <div className="dt-container">
         
-        {/* Section Header */}
-        <div className="dt-sec-head dt-reveal">
-          <div className="dt-eyebrow">02 — FONDÉ SUR LA SCIENCE</div>
-          <h2 className="dt-sec-title">
-            DE LA RECHERCHE CLINIQUE À <br className="dt-hide-mob" />
-            <em>L&apos;APPLICATION DANS LA SALLE.</em>
-          </h2>
-          <div className="dt-science-lead-quote">
-            « Fondé sur la science » n&apos;est pas un slogan marketing.
+        {/* Top Composition: Left Content + Right UH Video & Animated UH Logo */}
+        <div className="dt-science-hero-grid dt-reveal">
+          
+          {/* LEFT: Heading + Scientific Introduction */}
+          <div className="dt-science-hero-left">
+            <div className="dt-eyebrow">02 — FONDÉ SUR LA SCIENCE</div>
+            <h2 className="dt-sec-title">
+              DE LA RECHERCHE CLINIQUE À <br className="dt-hide-mob" />
+              <em>L&apos;APPLICATION DANS LA SALLE.</em>
+            </h2>
+            <div className="dt-science-lead-quote">
+              « Fondé sur la science » n&apos;est pas un slogan marketing.
+            </div>
+            <p className="dt-sec-kicker" style={{ maxWidth: '64ch' }}>
+              Conçu à l&apos;intersection de la rigueur des études en pharmacie et de plus de 10 ans d&apos;expérience intensive sur le terrain, le système UH synthétise les données validées en biomécanique, hypertrophie et nutrition clinique pour les traduire en instructions concrètes.
+            </p>
+
+            {/* Science -> Method -> Ultimate Human Trajectory */}
+            <div className="dt-science-trajectory" aria-label="Trajectoire UH : Science vers Méthode vers Ultimate Human">
+              <span className="dt-science-traj-step">
+                <FlaskConical size={13} /> Science
+              </span>
+              <span className="dt-science-traj-arrow">→</span>
+              <span className="dt-science-traj-step">
+                <Sliders size={13} /> Méthode
+              </span>
+              <span className="dt-science-traj-arrow">→</span>
+              <span className="dt-science-traj-step uh">
+                <Sparkles size={13} /> Ultimate Human
+              </span>
+            </div>
           </div>
-          <p className="dt-sec-kicker" style={{ maxWidth: '75ch' }}>
-            Conçu à l&apos;intersection de la rigueur des études en pharmacie et de plus de 10 ans d&apos;expérience intensive sur le terrain, le système UH synthétise les données validées en biomécanique, hypertrophie et nutrition clinique pour les traduire en instructions concrètes :
-          </p>
+
+          {/* RIGHT: UH Video beside content + Animated UH Logo Badge */}
+          <div className="dt-science-media-wrapper">
+            <video
+              className="dt-science-media-video"
+              src="/video.mp4"
+              poster="/video-poster.webp"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              aria-label="Protocole UH et application scientifique en salle"
+            />
+            <div className="dt-science-media-overlay" aria-hidden="true" />
+
+            {/* Animated UH Logo Floating Badge */}
+            <div className="dt-science-uh-badge" aria-label="Badge Ultimate Human Society">
+              <Image
+                src="/logo-uh.png"
+                alt="UH — Ultimate Human"
+                width={38}
+                height={38}
+                className="dt-science-uh-logo"
+              />
+              <div className="dt-science-uh-meta">
+                <span className="dt-science-uh-title">Ultimate Human</span>
+                <span className="dt-science-uh-sub">Protocole Clinique</span>
+              </div>
+            </div>
+          </div>
+
         </div>
 
         {/* 2 Key Pillars / Instructions */}
@@ -40,7 +92,7 @@ export default function Science({ onJoin }: ScienceProps) {
               Parmi les centaines d&apos;exercices existants, nous avons filtré uniquement les options les plus rentables. Les mouvements et techniques d&apos;exécution sont calibrés puis intégrés dans un cadre si limpide qu&apos;un enfant de 6 ans pourrait les appliquer immédiatement.
             </p>
             <div className="dt-science-card-foot">
-              <CheckCircle2 size={15} /> <span>Biomécanique & Hypertrophie optimisées</span>
+              <CheckCircle2 size={15} /> <span>Biomécanique &amp; Hypertrophie optimisées</span>
             </div>
           </div>
 

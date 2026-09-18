@@ -1,10 +1,10 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import { X, ArrowLeft, ArrowUpRight, Phone, Shield, Clock, Check } from 'lucide-react';
-import { API_URL } from '@/lib/config';
+import { API_URL, CONTACT_PHONE, CONTACT_PHONE_DISPLAY } from '@/lib/config';
 
 interface Props { open: boolean; onClose: () => void; prefill?: string; }
-interface FormState { name: string; email: string; phone: string; goal: string; }
+interface FormState { name: string; email: string; phone: string; }
 
 function Field({ label, required, full, children }: { label: string; required?: boolean; full?: boolean; children: React.ReactNode }) {
   return (
@@ -18,7 +18,7 @@ function Field({ label, required, full, children }: { label: string; required?: 
 export default function JoinModal({ open, onClose, prefill }: Props) {
   const [step, setStep] = useState(0);
   const [submitting, setSubmitting] = useState(false);
-  const [form, setForm] = useState<FormState>({ name: '', email: '', phone: '', goal: 'fat-loss' });
+  const [form, setForm] = useState<FormState>({ name: '', email: '', phone: '' });
   const dlgRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -79,8 +79,8 @@ export default function JoinModal({ open, onClose, prefill }: Props) {
               <div className="dt-modal-video-label">Vidéo · présentation du système Ultimate Human</div>
             </div>
             <div className="dt-modal-actions">
-              <a className="dt-btn dt-btn-ghost dt-btn-lg" href="tel:+21671000000">
-                <Phone size={16} /> Appeler · +216 71 000 000
+              <a className="dt-btn dt-btn-ghost dt-btn-lg" href={`tel:${CONTACT_PHONE}`}>
+                <Phone size={16} /> Appeler · {CONTACT_PHONE_DISPLAY}
               </a>
               <button className="dt-btn dt-btn-primary dt-btn-lg" onClick={() => setStep(1)}>
                 Demander un rendez-vous <ArrowUpRight size={16} />
@@ -113,15 +113,6 @@ export default function JoinModal({ open, onClose, prefill }: Props) {
               <Field label="Email" required full>
                 <input required type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="vous@diettemple.com" />
               </Field>
-              <Field label="Objectif principal">
-                <select value={form.goal} onChange={(e) => setForm({ ...form, goal: e.target.value })}>
-                  <option value="fat-loss">Perte de masse grasse</option>
-                  <option value="muscle">Prise de muscle</option>
-                  <option value="recomp">Recomposition corporelle</option>
-                  <option value="performance">Performance sportive</option>
-                  <option value="wellness">Santé & longévité</option>
-                </select>
-              </Field>
             </div>
             <label className="dt-modal-consent">
               <input type="checkbox" required defaultChecked />
@@ -148,7 +139,7 @@ export default function JoinModal({ open, onClose, prefill }: Props) {
               D&apos;ici là, parcourez le système et préparez vos questions.
             </p>
             <div className="dt-modal-actions">
-              <a className="dt-btn dt-btn-ghost dt-btn-lg" href="tel:+21671000000">
+              <a className="dt-btn dt-btn-ghost dt-btn-lg" href={`tel:${CONTACT_PHONE}`}>
                 <Phone size={16} /> Ou appelez maintenant
               </a>
               <button className="dt-btn dt-btn-primary dt-btn-lg" onClick={onClose}>

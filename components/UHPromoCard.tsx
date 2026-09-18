@@ -10,22 +10,10 @@ interface UHPromoCardProps {
 }
 
 const BENEFIT_ITEMS = [
-  {
-    title: 'Alliance science et terrain :',
-    desc: 'Une méthode conçue par des experts en pharmacie et en entraînement.',
-  },
-  {
-    title: 'Approche durable et vivable :',
-    desc: 'Dites adieu aux régimes drastiques grâce à une nutrition adaptée à votre quotidien.',
-  },
-  {
-    title: 'Exécution simple et précise :',
-    desc: 'Appliquez des instructions ultra-claires dès le premier jour pour progresser comme un pro.',
-  },
-  {
-    title: 'Diagnostic sur mesure',
-    desc: '',
-  },
+  'Alliance science & terrain',
+  'Nutrition durable & vivable',
+  'Instructions simples et précises',
+  'Diagnostic sur mesure',
 ];
 
 export default function UHPromoCard({ onDiscover, className = '' }: UHPromoCardProps) {
@@ -80,19 +68,14 @@ export default function UHPromoCard({ onDiscover, className = '' }: UHPromoCardP
               <span className="uh-promo-subhead">The Ultimate Human : Path</span>
               <h2 className="uh-promo-title">FINI L'IMPROVISATION</h2>
               <p className="uh-promo-desc">
-                UH est le premier système tunisien alliant la science et le terrain pour garantir une transformation physique mesurable et durable.
+                Le 1er système alliant la science et le terrain pour une transformation physique mesurable et durable.
               </p>
 
               <div className="uh-promo-benefits">
-                {BENEFIT_ITEMS.map((item, idx) => (
+                {BENEFIT_ITEMS.map((text, idx) => (
                   <div key={idx} className="uh-benefit-row">
-                    <div className="uh-check-icon">
-                      <Check size={13} strokeWidth={3} />
-                    </div>
-                    <div className="uh-benefit-text">
-                      <strong className="uh-benefit-title">{item.title} </strong>
-                      {item.desc && <span className="uh-benefit-desc">{item.desc}</span>}
-                    </div>
+                    <Check size={14} strokeWidth={3} className="uh-check-icon" />
+                    <span className="uh-benefit-text">{text}</span>
                   </div>
                 ))}
               </div>
@@ -294,15 +277,8 @@ export default function UHPromoCard({ onDiscover, className = '' }: UHPromoCardP
         .uh-benefit-text {
           font-size: 13px;
           line-height: 1.4;
-        }
-
-        .uh-benefit-title {
-          color: #ffffff;
-          font-weight: 700;
-        }
-
-        .uh-benefit-desc {
-          color: rgba(225, 225, 225, 0.78);
+          color: rgba(245, 245, 245, 0.95);
+          font-weight: 600;
         }
 
         .uh-promo-bottom {
