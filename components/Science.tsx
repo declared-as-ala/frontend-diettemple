@@ -43,33 +43,21 @@ export default function Science({ onJoin }: ScienceProps) {
             </div>
           </div>
 
-          {/* RIGHT: UH Video beside content + Animated UH Logo Badge */}
-          <div className="dt-science-media-wrapper">
-            <video
-              className="dt-science-media-video"
-              src="/video.mp4"
-              poster="/video-poster.webp"
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              aria-label="Protocole UH et application scientifique en salle"
-            />
-            <div className="dt-science-media-overlay" aria-hidden="true" />
-
-            {/* Animated UH Logo Floating Badge */}
-            <div className="dt-science-uh-badge" aria-label="Badge Ultimate Human Society">
+          {/* RIGHT: Standalone Animated UH Logo Showcase */}
+          <div className="dt-science-logo-showcase" aria-label="Logo Ultimate Human Society">
+            <div className="dt-science-uh-ambient" aria-hidden="true" />
+            <div className="dt-science-uh-card">
+              <div className="dt-science-uh-glow" aria-hidden="true" />
               <Image
                 src="/logo-uh.png"
                 alt="UH — Ultimate Human"
-                width={38}
-                height={38}
-                className="dt-science-uh-logo"
+                width={320}
+                height={213}
+                className="dt-science-uh-img"
               />
-              <div className="dt-science-uh-meta">
-                <span className="dt-science-uh-title">Ultimate Human</span>
-                <span className="dt-science-uh-sub">Protocole Clinique</span>
+              <div className="dt-science-uh-label-wrap">
+                <span className="dt-science-uh-title">Ultimate Human Society</span>
+                <span className="dt-science-uh-sub">Fondé sur la science</span>
               </div>
             </div>
           </div>

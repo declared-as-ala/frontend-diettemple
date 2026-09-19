@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { X, ArrowLeft, ArrowUpRight, Phone, Shield, Clock, Check } from 'lucide-react';
 import { API_URL, CONTACT_PHONE, CONTACT_PHONE_DISPLAY } from '@/lib/config';
 
-interface Props { open: boolean; onClose: () => void; prefill?: string; }
+interface Props { open: boolean; onClose: () => void; prefill?: string; gender?: string; }
 interface FormState { name: string; email: string; phone: string; }
 
 function Field({ label, required, full, children }: { label: string; required?: boolean; full?: boolean; children: React.ReactNode }) {
@@ -15,7 +15,7 @@ function Field({ label, required, full, children }: { label: string; required?: 
   );
 }
 
-export default function JoinModal({ open, onClose, prefill }: Props) {
+export default function JoinModal({ open, onClose, prefill, gender }: Props) {
   const [step, setStep] = useState(0);
   const [submitting, setSubmitting] = useState(false);
   const [form, setForm] = useState<FormState>({ name: '', email: '', phone: '' });
@@ -46,7 +46,12 @@ export default function JoinModal({ open, onClose, prefill }: Props) {
       await fetch(`${API_URL}/leads`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify({
+          ...form,
+          plan: prefill,
+          gender,
+          source: gender ? `modal-${gender}` : 'modal',
+        }),
       });
     } catch {
       // still show success even if API is down
@@ -79,10 +84,11 @@ export default function JoinModal({ open, onClose, prefill }: Props) {
               <div className="dt-modal-video-label">Vidéo · présentation du système Ultimate Human</div>
             </div>
             <div className="dt-modal-actions">
-              <a className="dt-btn dt-btn-ghost dt-btn-lg" href={`tel:${CONTACT_PHONE}`}>
-                <Phone size={16} /> Appeler · {CONTACT_PHONE_DISPLAY}
-              </a>
-              <button className="dt-btn dt-btn-primary dt-btn-lg" onClick={() => setStep(1)}>
+              <button
+                className="dt-btn dt-btn-primary dt-btn-lg"
+                onClick={() => setStep(1)}
+                style={{ width: '100%', justifyContent: 'center' }}
+              >
                 Demander un rendez-vous <ArrowUpRight size={16} />
               </button>
             </div>
@@ -126,6 +132,14 @@ export default function JoinModal({ open, onClose, prefill }: Props) {
             >
               {submitting ? 'Envoi en cours…' : <>Demander mon rendez-vous <ArrowUpRight size={16} /></>}
             </button>
+
+            <div className="rj-call-section">
+              <div className="rj-call-divider" />
+              <p className="rj-call-title">Vous préférez nous appeler ?</p>
+              <a className="dt-btn dt-btn-ghost dt-btn-lg rj-call-btn" href={`tel:${CONTACT_PHONE}`}>
+                <Phone size={16} /> Appeler · {CONTACT_PHONE_DISPLAY}
+              </a>
+            </div>
           </form>
         )}
 
