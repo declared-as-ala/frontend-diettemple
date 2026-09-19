@@ -20,7 +20,7 @@ import { useCart } from '@/lib/cartContext';
 import { useAuth } from '@/lib/authContext';
 
 interface NavProps {
-  onJoin: () => void;
+  onJoin?: () => void;
 }
 
 export default function Nav({ onJoin }: NavProps) {
@@ -30,6 +30,8 @@ export default function Nav({ onJoin }: NavProps) {
   const [activeHash, setActiveHash] = useState('');
   const pathname = usePathname();
   const router = useRouter();
+
+  const handleJoin = onJoin || (() => router.push('/rejoindre'));
 
   const isHome = pathname === '/';
   const isShop = pathname.startsWith('/produits');
@@ -218,7 +220,7 @@ export default function Nav({ onJoin }: NavProps) {
             {/* Desktop Primary CTA Button */}
             <button
               className="dt-nav-cta-btn dt-desk-only"
-              onClick={onJoin}
+              onClick={handleJoin}
               aria-label="Rejoindre Ultimate Human"
             >
               <span>Rejoindre UH</span>
@@ -302,7 +304,7 @@ export default function Nav({ onJoin }: NavProps) {
                 className="dt-btn dt-btn-primary dt-mobile-btn"
                 onClick={() => {
                   close();
-                  onJoin();
+                  handleJoin();
                 }}
               >
                 Rejoindre Ultimate Human <ArrowUpRight size={15} />
