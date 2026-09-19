@@ -146,16 +146,15 @@ export default function Hero({ onJoin }: HeroProps) {
           >
             {/* Continuous floating & slow scale breathing */}
             <div className="dt-hero-float-container">
-              <div className="dt-hero-floating-card">
+              <div className="dt-hero-artwork-wrap">
                 <Image
                   src={heroImg}
                   alt="DietTemple Ultimate Human — Entraînement et nutrition fondés sur la science"
                   priority
                   quality={95}
                   className="dt-hero-img"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 650px"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 55vw, 980px"
                 />
-                <div className="dt-hero-img-overlay" aria-hidden="true" />
               </div>
             </div>
           </div>
